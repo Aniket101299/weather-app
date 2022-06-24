@@ -1,38 +1,47 @@
-.App {
-  text-align: center;
+.info{
+  background-color: #8bd3e2;
+  width: 580px;
+  height: 670px;
+  margin-left: 100px;
+  margin-top: 10px;
+  padding-top: 40px;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.iframe{
+  width: 550px;
+  height: 510px;
+  /* frameborder: 0;  */
+  border : 0;
+  /* allowfullscreen: true */
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.inDiv{
+  margin: auto;
+  padding-top: 20px;
+  background-color: white;
+  width: 60%;
+  height: 94%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 30px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.searchBox{
+  margin-left: 15px;
+  border-radius: 10px;
+  width: 90%;
+  height: 40px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-
-.App-link {
-  color: #61dafb;
+.input{
+  height: 30px;
+  width: 60%;
+  margin-left: 60px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input:focus{
+  outline: none;
+}
+.graphs{
+  margin: auto;
+  height: 420px;
+  width: 90%;
+  margin-top: 150px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
