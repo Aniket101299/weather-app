@@ -23,16 +23,17 @@
   border-radius: 30px;
 }
 .searchBox{
-  margin-left: 15px;
+  display: flex;
+  margin-left: 17.5px;
   border-radius: 10px;
   width: 90%;
   height: 40px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .input{
-  height: 30px;
-  width: 60%;
-  margin-left: 60px;
+  margin-top: 9px;
+  margin-left: 10px;
+  border: none;
 }
 input:focus{
   outline: none;
@@ -44,4 +45,13 @@ input:focus{
   margin-top: 150px;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.location{
+  height:19px;
+  margin-left: 20px;
+  margin-top: 9px;
+}
+.searchIcon{
+  margin-top: 11px;
+  margin-left: 70px;
 }
