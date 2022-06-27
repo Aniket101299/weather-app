@@ -1,3 +1,6 @@
+.App{
+  display: flex;
+}
 .info{
   background-color: #8bd3e2;
   width: 580px;
@@ -6,12 +9,10 @@
   margin-top: 10px;
   padding-top: 40px;
 }
-.iframe{
+.iframeBox{
   width: 550px;
   height: 510px;
-  /* frameborder: 0;  */
-  border : 0;
-  /* allowfullscreen: true */
+  border : 0
 }
 .inDiv{
   margin: auto;
@@ -54,4 +55,61 @@ input:focus{
 .searchIcon{
   margin-top: 11px;
   margin-left: 70px;
+}
+
+.box{
+  display: flex;
+  width: 1360px;
+  height: 550px;
+  background-color:lavender;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+.map{
+  width: 550px;
+  height: 510px;
+  margin-left: 100px;
+  margin-top: 105px;
+}
+.weather{
+  width: 720px;
+  height: 520px;
+  /* border: 1px solid red; */
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.weather h1{
+  text-align: center;
+  margin-top: 2px;
+}
+.detail{
+  display: flex;
+}
+.detail div{
+  /* border: 1px solid red; */
+  width: 100px;
+  margin-left: 15px;
+  border-radius: 15px;
+  background-color:violet;
+}
+.sevenData{
+  display: grid;
+  grid-template-columns: repeat(7,auto);
+  grid-gap: 26px;
+  /* border: 1px solid red; */
+  background-color: black;
+  color: white;
+  margin-left: 15px;
+  border-radius: 10px;
+}
+.weather #title{
+  text-align: center;
+}
+.sevenData div{
+  /* border: 1px solid blue; */
+  text-align: left;
+}
+.sevenData div img{
+  height: 50px;
+  width: 50px;
 }
