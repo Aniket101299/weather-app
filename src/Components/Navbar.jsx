@@ -6,6 +6,9 @@ export const Navbar = ({getItemParent}) => {
 
     const [item , setItem] = useState("");
 
+    // let curr = () => {
+    //     console.log("hi");
+    // }
     function curr() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
