@@ -75,7 +75,7 @@ async function cityWeekInfo(latitude, longitude) {
     try {
         let responce = await fetch(url);
         let data = await responce.json();       
-        
+        console.log("data", data);
         setData2(data);
     }
     catch (err) {

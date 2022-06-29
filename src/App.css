@@ -6,8 +6,14 @@
   width: 580px;
   height: 670px;
   margin-left: 100px;
-  margin-top: 10px;
-  padding-top: 40px;
+  /* margin-top: 10px; */
+  padding-top: 10px;
+}
+.map{
+  width: 550px;
+  height: 510px;
+  margin-left: 100px;
+  margin-top: 92px;
 }
 .iframeBox{
   width: 550px;
@@ -19,7 +25,7 @@
   padding-top: 20px;
   background-color: white;
   width: 60%;
-  height: 94%;
+  height: 95%;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-radius: 30px;
 }
@@ -39,14 +45,6 @@
 input:focus{
   outline: none;
 }
-.graphs{
-  margin: auto;
-  height: 420px;
-  width: 90%;
-  margin-top: 150px;
-  border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
 .location{
   height:19px;
   margin-left: 20px;
@@ -56,6 +54,87 @@ input:focus{
   margin-top: 11px;
   margin-left: 70px;
 }
+.sevenDay{
+  display: grid;
+  grid-template-columns: repeat(8,60px);
+  grid-gap: 5px;
+  margin-left: 15px;
+  overflow: scroll;
+}
+/* .sevenDay div{
+  border: 1px solid green;
+} */
+.sevenDay div p:nth-child(1){
+  font-size: 13.5px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+.sevenDay div span:nth-child(2){
+  font-size: 14.5px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+.sevenDay div span:nth-child(3){
+  font-size: 14.5px;
+  text-align: center;
+}
+.sevenDay div img{
+  width: 25px;
+  margin-left: 16px;
+  margin-top: 7px;
+}
+.sevenDay div p:nth-child(5){
+  font-size: 12.3px;
+  text-align: center;
+  margin-top: 2px;
+}
+.graphs{
+  margin: auto;
+  height: 420px;
+  width: 90%;
+  margin-top: -28.5px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.graphs p:nth-child(1) {
+  font-size: 45px;
+  font-weight: 700;
+  margin-left: 23px;
+  padding-top: 6px;
+}
+.graphs div{
+  /* border: 1px solid red; */
+  width: 50px;
+  margin-left: 143px;
+  margin-top: -98px;
+}
+.graphs div img{
+  width: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 
 .box{
   display: flex;
@@ -74,7 +153,7 @@ input:focus{
 .weather{
   width: 720px;
   height: 520px;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   margin-top: 20px;
   border-radius: 10px;
 }
@@ -86,7 +165,7 @@ input:focus{
   display: flex;
 }
 .detail div{
-  /* border: 1px solid red; */
+  border: 1px solid red;
   width: 100px;
   margin-left: 15px;
   border-radius: 15px;
@@ -96,7 +175,7 @@ input:focus{
   display: grid;
   grid-template-columns: repeat(7,auto);
   grid-gap: 26px;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   background-color: black;
   color: white;
   margin-left: 15px;
@@ -106,10 +185,10 @@ input:focus{
   text-align: center;
 }
 .sevenData div{
-  /* border: 1px solid blue; */
+  border: 1px solid blue;
   text-align: left;
 }
 .sevenData div img{
   height: 50px;
   width: 50px;
-}
+} */
