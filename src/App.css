@@ -113,8 +113,12 @@ input:focus{
 .graphs div img{
   width: 50px;
 }
-
-
+.App-header{
+  border: 1px solid red;
+}
+.tempGraph{
+  border: 1px solid yellow;
+}
 
 
 

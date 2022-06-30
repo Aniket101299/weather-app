@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
+import React, {Component} from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
@@ -8,6 +9,7 @@ import axios from "axios";
 
 import { Navbar } from './Components/Navbar';
 import { Main } from './Components/Main';
+
 
 import rain from "./images/rain.png";
 import mist from "./images/mist.png";
@@ -28,6 +30,8 @@ const [call, setCall] = useState("");
 const [data, setData] = useState("");
 const [permission, setPermission] = useState(false);
 const [sevenDayData, setSevenDayData] = useState("");
+const [hourlyTemp, sethourlyTemp] = useState("");
+
 
 let map_url = `https://www.google.com/maps/embed/v1/search?key=${google_map_key}&q=${city}`;
 
@@ -59,11 +63,12 @@ axios.get(`https://ipinfo.io/json?token=${IPtoken}`)
     // user city weather
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${res.data.city}&appid=${weather_key}&units=metric`;
     axios.get(url)
-    .then((res) => {console.log(res.data)
-    
-    sevenDayFun(res.data.coord.lat,res.data.coord.lon);  
-    
+    .then((res) => {
+    console.log(res.data);
+    sevenDayFun(res.data.coord.lat,res.data.coord.lon);
+    twelveHourTemp(res.data.coord.lat,res.data.coord.lon);  
     })
+
 })
 
 // setData(res.data);
@@ -134,6 +139,29 @@ setSevenDayData(sevenDay_Data);
 
 
 
+   // 24 hour temp forecast
+
+  async function twelveHourTemp(lat,lon) {
+    let url24 = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${weather_key}&units=metric`;
+    // axios.get(url24)
+    // .then((res) => {
+    //   console.log("24h", res);
+    // })
+    try{
+    let res = await fetch(url24);
+    let data = await res.json();
+    console.log("24h", data.hourly);
+    sethourlyTemp(data.hourly);
+    } catch(err) {
+      console.log(err.message);
+    }
+  }
+
+
+
+
+
+
 useEffect(()=> {
   // Weather of a city 
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
@@ -169,6 +197,44 @@ function getItemParent(x){
     setItem2(x);
 }
 
+
+
+// class ApexChartTemp extends Component {
+// constructor(props) {
+//   super(props);
+
+//   this.state = {
+  
+//     series: [{
+//       name:`Temperature`,
+//       data: [
+//       [1, Math.floor(hourlyTemp[0].temp)],[2, Math.floor(hourlyTemp[1].temp)],[3, Math.floor(hourlyTemp[2].temp)],
+//       [4, Math.floor(hourlyTemp[3].temp)],[5, Math.floor(hourlyTemp[4].temp)],[6, Math.floor(hourlyTemp[5].temp)],
+//       [7, Math.floor(hourlyTemp[6].temp)],[8, Math.floor(hourlyTemp[7].temp)],[9, Math.floor(hourlyTemp[8].temp)],
+//       [10, Math.floor(hourlyTemp[9].temp)],[11, Math.floor(hourlyTemp[10].temp)],[12, Math.floor(hourlyTemp[11].temp)],
+//       [1, Math.floor(hourlyTemp[12].temp)],[2, Math.floor(hourlyTemp[13].temp)],[3, Math.floor(hourlyTemp[14].temp)],
+//       [4, Math.floor(hourlyTemp[15].temp)],[5, Math.floor(hourlyTemp[16].temp)],[6, Math.floor(hourlyTemp[17].temp)],
+//       [7, Math.floor(hourlyTemp[18].temp)],[8, Math.floor(hourlyTemp[19].temp)],[9, Math.floor(hourlyTemp[20].temp)],
+//       [10, Math.floor(hourlyTemp[21].temp)],[11, Math.floor(hourlyTemp[22].temp)],[12, Math.floor(hourlyTemp[23].temp)]
+//       ]
+//     }],
+//     options: {
+//       chart: {
+//         type: 'area',
+//         zoom: {
+//           enabled: false
+//         }
+//       },
+//       stroke: {
+//         curve: 'straight'
+//       },
+//       xaxis: {
+//         type: 'numeric',
+//       }
+//     },
+//   };
+// }
+// }
 
 
 
@@ -247,21 +313,78 @@ function getItemParent(x){
               <p>{sevenDayData[7].weather}</p>
             </div>     
 
-            </div>
+            </div> 
 
             <div className='graphs'>
               <p>{`${sevenDayData[0].currentDayTemp}C`}</p>
               <div> <img src={sevenDayData[0].weather == "Clouds"? cloud : sevenDayData[0].weather == "Rain"? rain : sevenDayData[0].weather == "Clear"? clear : sevenDayData[0].weather == "Haze"? haze : "Mist"}/> </div>
+             
+              <header className='App-header'>
               {/* <Chart
               type="area"
               width={350}
               height={350}
-              series={[
-              {}
-              ]}
-              >  
+              series= {[{
+              name:`Temperature`,
+              data: [
+              [1, Math.floor(hourlyTemp[0].temp)],[2, Math.floor(hourlyTemp[1].temp)],[3, Math.floor(hourlyTemp[2].temp)],
+              [4, Math.floor(hourlyTemp[3].temp)],[5, Math.floor(hourlyTemp[4].temp)],[6, Math.floor(hourlyTemp[5].temp)],
+              [7, Math.floor(hourlyTemp[6].temp)],[8, Math.floor(hourlyTemp[7].temp)],[9, Math.floor(hourlyTemp[8].temp)],
+              [10, Math.floor(hourlyTemp[9].temp)],[11, Math.floor(hourlyTemp[10].temp)],[12, Math.floor(hourlyTemp[11].temp)],
+              [1, Math.floor(hourlyTemp[12].temp)],[2, Math.floor(hourlyTemp[13].temp)],[3, Math.floor(hourlyTemp[14].temp)],
+              [4, Math.floor(hourlyTemp[15].temp)],[5, Math.floor(hourlyTemp[16].temp)],[6, Math.floor(hourlyTemp[17].temp)],
+              [7, Math.floor(hourlyTemp[18].temp)],[8, Math.floor(hourlyTemp[19].temp)],[9, Math.floor(hourlyTemp[20].temp)],
+              [10, Math.floor(hourlyTemp[21].temp)],[11, Math.floor(hourlyTemp[22].temp)],[12, Math.floor(hourlyTemp[23].temp)]
+              ]
+              }]} 
+               options={
+                xaxis: {type: 'numeric'},
+                stroke: {curve: 'straight'}
+              }
+              >   
 
-              </Chart>*/}
+              </Chart>  */}
+              <Chart 
+              className="tempGraph"
+              type='area'
+              width={500}
+              height={550}
+              series={[
+                {name: "Temperature",
+                 data:[
+                  [1, Math.floor(hourlyTemp[0].temp)],[2, Math.floor(hourlyTemp[1].temp)],[3, Math.floor(hourlyTemp[2].temp)],
+                  [4, Math.floor(hourlyTemp[3].temp)],[5, Math.floor(hourlyTemp[4].temp)],[6, Math.floor(hourlyTemp[5].temp)],
+                  [7, Math.floor(hourlyTemp[6].temp)],[8, Math.floor(hourlyTemp[7].temp)],[9, Math.floor(hourlyTemp[8].temp)],
+                  [10, Math.floor(hourlyTemp[9].temp)],[11, Math.floor(hourlyTemp[10].temp)],[12, Math.floor(hourlyTemp[11].temp)],
+                  [1, Math.floor(hourlyTemp[12].temp)],[2, Math.floor(hourlyTemp[13].temp)],[3, Math.floor(hourlyTemp[14].temp)],
+                  [4, Math.floor(hourlyTemp[15].temp)],[5, Math.floor(hourlyTemp[16].temp)],[6, Math.floor(hourlyTemp[17].temp)],
+                  [7, Math.floor(hourlyTemp[18].temp)],[8, Math.floor(hourlyTemp[19].temp)],[9, Math.floor(hourlyTemp[20].temp)],
+                  [10, Math.floor(hourlyTemp[21].temp)],[11, Math.floor(hourlyTemp[22].temp)],[12, Math.floor(hourlyTemp[23].temp)]
+                 ]
+                }
+              ]}
+              options={{
+                chart: {
+                  type: 'area',
+                  zoom: {
+                    enabled: false
+                  }
+                },
+                xaxis: {type: 'numeric'},
+                yaxis: {type: 'numeric'},
+                stroke: {
+                  curve: 'straight'
+                },
+                labels: "hi",
+              
+              
+              }}
+              >
+
+              </Chart>
+              </header> 
+              {/* <Chart options={this.state.options} series={this.state.series} type="area"/>  */}
+              
             </div>
 
           </div>
