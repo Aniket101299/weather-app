@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./SunriseSet.css";
 export default function SunriseSunset({data}) {
 
   // sunrise and sunset
@@ -19,30 +20,48 @@ export default function SunriseSunset({data}) {
     let y = sunset.toString();
     let rise = "";
     let set = "";
-    for(let i=16; i<25; i++) {
+    for(let i=16; i<21; i++) {
         rise+= x[i];
         set+= y[i];
     }
-   
+  console.log("rise",rise);
+  console.log("set",set);
     let riseHour = "";
     let setHour = ""; 
+
     for(let i=0; i<2; i++) {
         riseHour+= rise[i];
-        setHour+= set[i];
     }
+
+    for(let i=0; i<2; i++) {
+      setHour+= set[i];
+    }
+
     riseHour = +riseHour;
     setHour = +setHour;
-
+    
     if(riseHour>12) {
        riseHour = riseHour - 12;
+       rise = rise.substring(2);
+       rise = riseHour + rise;
+    } else {
+       rise = rise.substring(1);
     }
 
     if(setHour>12) {
       setHour = setHour - 12;
+      set = set.substring(2);
+      set = setHour + set;
+    } else {
+      set = set.substring(1);
     }
 
-    console.log("rise",rise);
-    console.log("set",set);
+    setSunrise(rise);
+    setSunset(set);
+    
+
+    // console.log("rise",rise);
+    // console.log("set",set);
     // setSunrise(x);
     // setSunset(y);
     // console.log( "sunrise", x);

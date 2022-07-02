@@ -18,6 +18,7 @@ import cloud from "./images/clouds.png";
 import clear from "./images/clear.png";
 import haze from "./images/haze.png";
 import SunriseSunset from './Components/SunriseSet';
+import SunriseSetGraph from './Components/SunriseSetGraph';
  
 
 
@@ -33,6 +34,7 @@ const [data, setData] = useState("");
 const [permission, setPermission] = useState(false);
 const [sevenDayData, setSevenDayData] = useState("");
 const [hourlyTemp, sethourlyTemp] = useState("");
+const [sevenDaySunData, setSevenDaySunData] = useState("");
 
 
 
@@ -143,7 +145,7 @@ setSevenDayData(sevenDay_Data);
 
 
 
-   // 24 hour temp forecast
+   // 24 hour temp forecast and sunrise sunset data
 
   async function twelveHourTemp(lat,lon) {
     let url24 = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${weather_key}&units=metric`;
@@ -155,7 +157,9 @@ setSevenDayData(sevenDay_Data);
     let res = await fetch(url24);
     let data = await res.json();
     console.log("24h", data.hourly);
+    console.log("sevenDaySunData", data.daily);
     sethourlyTemp(data.hourly);
+    setSevenDaySunData(data.daily);
     } catch(err) {
       console.log(err.message);
     }
@@ -344,7 +348,11 @@ function getItemParent(x){
 
               <SunriseSunset data={data}/>
 
+              <SunriseSetGraph sevenDaySunData={sevenDaySunData}/>
+
             </div>  
+
+            
               {/* <header className='App-header'> */}
               {/* <Chart
               type="area"

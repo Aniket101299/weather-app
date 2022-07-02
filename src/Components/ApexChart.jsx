@@ -4,6 +4,7 @@ import "./ApexChart.css";
 
 export default class ApexChartTemp extends Component {
     constructor(props) {
+      
         super(props);
         this.state = {
           options: {
