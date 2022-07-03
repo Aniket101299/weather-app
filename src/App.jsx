@@ -88,7 +88,7 @@ async function sevenDayFun(latitude, longitude) {
   try {
       let responce = await fetch(url);
       let Seven_data = await responce.json();       
-      // console.log("seven",Seven_data.daily);
+      console.log("sevenDay",Seven_data.daily);
       
 
   let sevenDay_Data = [];
@@ -135,8 +135,8 @@ sevenDay_Data.push(dayInfo);
 })
 
 
- 
 setSevenDayData(sevenDay_Data);
+setSevenDaySunData([latitude, longitude]);
 
 } catch(err) {
   console.log(err.message);
@@ -159,7 +159,7 @@ setSevenDayData(sevenDay_Data);
     console.log("24h", data.hourly);
     console.log("sevenDaySunData", data.daily);
     sethourlyTemp(data.hourly);
-    setSevenDaySunData(data.daily);
+   
     } catch(err) {
       console.log(err.message);
     }

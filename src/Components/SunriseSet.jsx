@@ -24,8 +24,8 @@ export default function SunriseSunset({data}) {
         rise+= x[i];
         set+= y[i];
     }
-  console.log("rise",rise);
-  console.log("set",set);
+  // console.log("rise",rise);
+  // console.log("set",set);
     let riseHour = "";
     let setHour = ""; 
 
