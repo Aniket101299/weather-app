@@ -50,7 +50,7 @@ var m = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTC
     // console.log("wday", wday);
 
     let dateOfGraph = "";
-    for(let i=4; i<wday.length; i++) {
+    for(let i=4; i<wday.length-5; i++) {
         dateOfGraph = dateOfGraph + wday[i];
     }
 
@@ -372,32 +372,32 @@ localStorage.setItem(`sunset${i}`, JSON.stringify(newSet));
 // console.log("y",y);
 // console.log("z",z);
 
-let one = localStorage.getItem(JSON.parse("date0"));
-let two = localStorage.getItem(JSON.parse("date1"));
-let three = localStorage.getItem(JSON.parse("date2"));
-let four = localStorage.getItem(JSON.parse("date3"));
-let five = localStorage.getItem(JSON.parse("date4"));
-let six = localStorage.getItem(JSON.parse("date5"));
-let seven = localStorage.getItem(JSON.parse("date6"));
-let eight = localStorage.getItem(JSON.parse("date7"));
+let one = JSON.parse(localStorage.getItem(("date0")));
+let two = JSON.parse (localStorage.getItem(("date1")));
+let three = JSON.parse (localStorage.getItem(("date2")));
+let four = JSON.parse (localStorage.getItem(("date3")));
+let five = JSON.parse (localStorage.getItem(("date4")));
+let six = JSON.parse (localStorage.getItem(("date5")));
+let seven = JSON.parse (localStorage.getItem(("date6")));
+let eight = JSON.parse (localStorage.getItem(("date7")));
 
-let rise1 = localStorage.getItem(JSON.parse("sunrise0"));
-let rise2 = localStorage.getItem(JSON.parse("sunrise1"));
-let rise3 = localStorage.getItem(JSON.parse("sunrise2"));
-let rise4 = localStorage.getItem(JSON.parse("sunrise3"));
-let rise5 = localStorage.getItem(JSON.parse("sunrise4"));
-let rise6 = localStorage.getItem(JSON.parse("sunrise5"));
-let rise7 = localStorage.getItem(JSON.parse("sunrise6"));
-let rise8 = localStorage.getItem(JSON.parse("sunrise7"));
+let rise1 = JSON.parse (localStorage.getItem(("sunrise0")));
+let rise2 = JSON.parse (localStorage.getItem(("sunrise1")));
+let rise3 = JSON.parse (localStorage.getItem(("sunrise2")));
+let rise4 = JSON.parse (localStorage.getItem(("sunrise3")));
+let rise5 = JSON.parse (localStorage.getItem(("sunrise4")));
+let rise6 = JSON.parse (localStorage.getItem(("sunrise5")));
+let rise7 = JSON.parse (localStorage.getItem(("sunrise6")));
+let rise8 = JSON.parse (localStorage.getItem(("sunrise7")));
 
-let set1 = localStorage.getItem(JSON.parse("sunset0"));
-let set2 = localStorage.getItem(JSON.parse("sunset1"));
-let set3 = localStorage.getItem(JSON.parse("sunset2"));
-let set4 = localStorage.getItem(JSON.parse("sunset3"));
-let set5 = localStorage.getItem(JSON.parse("sunset4"));
-let set6 = localStorage.getItem(JSON.parse("sunset5"));
-let set7 = localStorage.getItem(JSON.parse("sunset6"));
-let set8 = localStorage.getItem(JSON.parse("sunset7"));
+let set1 = JSON.parse (localStorage.getItem(("sunset0")));
+let set2 = JSON.parse (localStorage.getItem(("sunset1")));
+let set3 = JSON.parse (localStorage.getItem(("sunset2")));
+let set4 = JSON.parse (localStorage.getItem(("sunset3")));
+let set5 = JSON.parse (localStorage.getItem(("sunset4")));
+let set6 = JSON.parse (localStorage.getItem(("sunset5")));
+let set7 = JSON.parse (localStorage.getItem(("sunset6")));
+let set8 = JSON.parse (localStorage.getItem(("sunset7")));
 
 
 
@@ -418,6 +418,9 @@ let set8 = localStorage.getItem(JSON.parse("sunset7"));
                 rotateAlways: true
             }
           },
+          yaxis: {
+            show: false,
+          },
             stroke: {
               curve: 'smooth'
             },
@@ -433,11 +436,27 @@ let set8 = localStorage.getItem(JSON.parse("sunset7"));
                     opacityTo: 0.05,
                     stops: [20, 100, 100, 100]
                   },
-              }
+              },
+              legend: {
+                position: 'top',
+                horizontalAlign: 'left',
+                offsetX: -10,
+              },
+              theme: {
+                mode: 'light', 
+                palette: 'palette1', 
+                monochrome: {
+                    enabled: false,
+                    color: '#255aee',
+                    shadeTo: 'light',
+                    shadeIntensity: 0.65
+                },
+            },
+            colors: ['#feeb2d', '#ff7a03']
             }, 
           series: [{
             name: 'Sunrise',
-            data:[rise1,rise2,rise3,rise4,rise5,rise6,rise7,rise8]
+            data:[rise1,rise2,rise3,rise4,rise5,rise6,rise7,rise8],
           },{
             name: 'Sunset',
             data:[set1,set2,set3,set4,set5,set6,set7,set8]
@@ -449,7 +468,7 @@ let set8 = localStorage.getItem(JSON.parse("sunset7"));
     render() {
         return (
             <div className="chart">
-                 <Chart options={this.state.options} series={this.state.series} type="area" width={300} height={150} />
+                 <Chart options={this.state.options} series={this.state.series} type="area" width={310} height={150} />
             </div>
         )
     }

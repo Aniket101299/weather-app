@@ -5,20 +5,24 @@ import React, {Component} from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+
 import axios from "axios";
 
-import { Navbar } from './Components/Navbar';
-import { Main } from './Components/Main';
+// import { Navbar } from './Components/Navbar';
+// import { Main } from './Components/Main';
 import ApexChartTemp from './Components/ApexChart';
 
 
-import rain from "./images/rain.png";
-import mist from "./images/mist.png";
-import cloud from "./images/clouds.png";
-import clear from "./images/clear.png";
-import haze from "./images/haze.png";
+// import rain from "./images/rain.png";
+// import mist from "./images/mist.png";
+// import cloud from "./images/clouds.png";
+// import clear from "./images/clear.png";
+// import haze from "./images/haze.png";
 import SunriseSunset from './Components/SunriseSet';
 import SunriseSetGraph from './Components/SunriseSetGraph';
+import SevenDay from './Components/SevenDay';
+import TempAndImg from './Components/TempAndImg';
+import PressureAndHum from './Components/PressureAndHum';
  
 
 
@@ -29,8 +33,15 @@ let google_map_key = "AIzaSyB_iyI-ZoAiV9j3HaHH58AEo62mXxOhL5Q";
 
 
 const [city, setCity] = useState("");
-const [call, setCall] = useState("");
-const [data, setData] = useState("");
+const [call, setCall] = useState(false);
+const [data, setData] = useState({
+  coord: {lon: "", lat: ""},
+  dt:"",
+  main:{temp:"",temp_min:"",temp_max:"",humidity:"",pressure: ""},
+  name:"",
+  sys:{sunrise: "", sunset: ""},
+  weather:[{main:""}]
+});
 const [permission, setPermission] = useState(false);
 const [sevenDayData, setSevenDayData] = useState("");
 const [hourlyTemp, sethourlyTemp] = useState("");
@@ -57,6 +68,7 @@ useEffect(() => {
   }
 
 function showPosition(position) {
+  console.log("USer Allowed");
 // setPermission(true);
 let IPtoken = "87e30487d2330d";
 
@@ -64,16 +76,17 @@ axios.get(`https://ipinfo.io/json?token=${IPtoken}`)
 .then((res) => {
   // if(permission == true) {
     setCity(res.data.city);
+    console.log("city", city);
   // }
     // user city weather
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${res.data.city}&appid=${weather_key}&units=metric`;
-    axios.get(url)
-    .then((res) => {
-    console.log("singleDay",res.data);
-    setData(res.data);
-    sevenDayFun(res.data.coord.lat,res.data.coord.lon);
-    twelveHourTemp(res.data.coord.lat,res.data.coord.lon);  
-    })
+    // let url = `https://api.openweathermap.org/data/2.5/weather?q=${res.data.city}&appid=${weather_key}&units=metric`;
+    // axios.get(url)
+    // .then((res) => {
+    // console.log("singleDay",res.data);
+    // setData(res.data);
+    // sevenDayFun(res.data.coord.lat,res.data.coord.lon);
+    // twelveHourTemp(res.data.coord.lat,res.data.coord.lon);  
+    // })
 
 })
 
@@ -81,67 +94,87 @@ axios.get(`https://ipinfo.io/json?token=${IPtoken}`)
 
 },[]);
 
+console.log("city1", city);
 
-async function sevenDayFun(latitude, longitude) {
+
+useEffect(() => {
+    // user city weather
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
+    axios.get(url)
+    .then((res) => {
+    console.log("singleDay",res.data);
+    setData(res.data);
+    // sevenDayFun(res.data.coord.lat,res.data.coord.lon);
+    // twelveHourTemp(res.data.coord.lat,res.data.coord.lon);  
+    })
+},[city])
+
+console.log("city2", city);
+console.log("dataISet", data);
+
+// 7 day Data
+
+// async function sevenDayFun(latitude, longitude) {
     
-  let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${weather_key}&units=metric`;
-  try {
-      let responce = await fetch(url);
-      let Seven_data = await responce.json();       
-      console.log("sevenDay",Seven_data.daily);
+//   let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${weather_key}&units=metric`;
+//   try {
+//       let responce = await fetch(url);
+//       let Seven_data = await responce.json();       
+//       console.log("sevenDayForecast",Seven_data.daily);
       
 
-  let sevenDay_Data = [];
+//   let sevenDay_Data = [];
 
 
-Seven_data.daily.forEach(function(Eachday) {
+// Seven_data.daily.forEach(function(Eachday) {
 
-let date = Eachday.dt;
+// let date = Eachday.dt;
 
-function pad(value) {
-    return value > 9 ? value: "0" + value;
-}
-var utc = date;
-var d = new Date(0); 
-d.setUTCSeconds(utc);
-var m = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
-// console.log(m);
+// function pad(value) {
+//     return value > 9 ? value: "0" + value;
+// }
+// var utc = date;
+// var d = new Date(0); 
+// d.setUTCSeconds(utc);
+// var m = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+// // console.log(m);
 
-    const da = new Date(m);
-    // console.log("da" ,da);
+//     const da = new Date(m);
+//     // console.log("da" ,da);
     
-  let wday = da.toDateString();
-    // console.log(typeof da.toDateString())
-    let weekday = "";
-    for(let i=0; i<3; i++) {
-    weekday = weekday + wday[i];
-    }
-    // console.log(weekday);
+//   let wday = da.toDateString();
+//     // console.log(typeof da.toDateString())
+//     let weekday = "";
+//     for(let i=0; i<3; i++) {
+//     weekday = weekday + wday[i];
+//     }
+//     // console.log(weekday);
   
-    let mintemp = Math.floor(Eachday.temp.min);
-    let maxtemp = Math.floor(Eachday.temp.max);
-    let currDayTemp = Math.floor(Eachday.temp.day);
+//     let mintemp = Math.floor(Eachday.temp.min);
+//     let maxtemp = Math.floor(Eachday.temp.max);
+//     let currDayTemp = Math.floor(Eachday.temp.day);
 
-let dayInfo = {
-  name: weekday,
-  minTemp:`${mintemp}°`,
-  maxTemp:`${maxtemp}°`,
-  weather: Eachday.weather[0].main,
-  currentDayTemp: `${currDayTemp}°`
-}   
+// let dayInfo = {
+//   name: weekday,
+//   minTemp:`${mintemp}°`,
+//   maxTemp:`${maxtemp}°`,
+//   weather: Eachday.weather[0].main,
+//   currentDayTemp: `${currDayTemp}°`
+// }   
 
-sevenDay_Data.push(dayInfo);
+// sevenDay_Data.push(dayInfo);
 
-})
+// })
 
 
-setSevenDayData(sevenDay_Data);
-setSevenDaySunData([latitude, longitude]);
+// setSevenDayData(sevenDay_Data);
 
-} catch(err) {
-  console.log(err.message);
-}
-}
+// setSevenDaySunData([latitude, longitude]);
+
+// } catch(err) {
+//   console.log(err.message);
+// }
+// }
 
 
 
@@ -156,8 +189,8 @@ setSevenDaySunData([latitude, longitude]);
     try{
     let res = await fetch(url24);
     let data = await res.json();
-    console.log("24h", data.hourly);
-    console.log("sevenDaySunData", data.daily);
+    console.log("24hrTemp", data.hourly);
+    // console.log("sevenDaySunData", data.daily);
     sethourlyTemp(data.hourly);
    
     } catch(err) {
@@ -168,15 +201,17 @@ setSevenDaySunData([latitude, longitude]);
 
 
 
+  
 
 
 
-useEffect(()=> {
+// useEffect(()=> {
   // Weather of a city 
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
-      axios.get(url)
-      .then((res) => setData(res.data))
-  },[call]);
+  // let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
+  //     axios.get(url)
+  //     .then((res) => setData(res.data))
+  // },[call]);
+
 
 
 
@@ -250,7 +285,8 @@ function getItemParent(x){
   return (
    
     <>
-    {city == "" ? <h2> Please allow your location to use Weather App</h2> : 
+    {city == "" ? ( <h2 className='permission'> Please allow your location to use Weather App </h2> ) 
+    : (
     <div className="App">
       
       {/* left fiv */}
@@ -262,11 +298,14 @@ function getItemParent(x){
                 <div> <input className='input' placeholder="Search" ></input> </div> 
                 <div> <FontAwesomeIcon className='searchIcon' icon={faMagnifyingGlass} />  </div>
             </div>
-
-            <div className='sevenDay'>
+      
+            {/* <h2>{`city: ${city}`}</h2> */}
+          
+          
+            {/* <div className='sevenDay'>
 
             <div>
-              <p>{sevenDayData[0].name}</p>
+              <p>{`${sevenDayData[0].name}`}</p>
               <span>{`${sevenDayData[0].minTemp}`}</span>
               <span>{`${sevenDayData[0].maxTemp}`}</span>
               <img src={sevenDayData[0].weather == "Clouds"? cloud : sevenDayData[0].weather == "Rain"? rain : sevenDayData[0].weather == "Clear"? clear : sevenDayData[0].weather == "Haze"? haze : mist}/>
@@ -322,37 +361,35 @@ function getItemParent(x){
               <p>{sevenDayData[7].weather}</p>
             </div>     
 
-            </div> 
+            </div>  */}
 
-            <div className='graphs'>
+
+             {/* <SevenDay sevenDayData={sevenDayData}/> */}
+             {/* <SevenDay data={data}/> */}
+
+            {/* <div className='graphs'>
               
-              <div className='TempImg'>
-                <div>{`${sevenDayData[0].currentDayTemp}C`}</div>
-                <div> <img src={sevenDayData[0].weather == "Clouds"? cloud : sevenDayData[0].weather == "Rain"? rain : sevenDayData[0].weather == "Clear"? clear : sevenDayData[0].weather == "Haze"? haze : mist}/> </div>
-              </div>
+              <TempAndImg sevenDayData={sevenDayData}/>
              
               <div className='graphDiv'>  
                 <ApexChartTemp hourlyTemp={hourlyTemp}/>
               </div>
 
-              <div className='pressureHumidity'>
-                <div>
-                  <p>Pressure</p>
-                  <p>{data.main.pressure} hPa</p>
-                </div>
-                <div>
-                  <p>Humidity</p>
-                  <p>{data.main.humidity} %</p>
-                </div>
-              </div>
+              <PressureAndHum data={data}/>
+            
 
               <SunriseSunset data={data}/>
 
               <SunriseSetGraph sevenDaySunData={sevenDaySunData}/>
 
-            </div>  
+            </div>      */}
 
             
+
+
+
+
+
               {/* <header className='App-header'> */}
               {/* <Chart
               type="area"
@@ -431,7 +468,8 @@ function getItemParent(x){
           </iframe>
        </div>
     </div>
-    }
+
+    )}
 
 
 {/* 
@@ -442,13 +480,12 @@ function getItemParent(x){
 
 
 
-
 {/* <div className="search">   
 <input type="text" value={city} onChange={handleCity} className="city" placeholder="enter city"/>
 <button onClick={() => getData}>Search</button>  
 </div>
-
 <div>Data:</div> */}
+
 
     </>
   

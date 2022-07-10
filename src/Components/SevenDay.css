@@ -1,0 +1,36 @@
+.sevenDay{
+    display: grid;
+    grid-template-columns: repeat(8,60px);
+    grid-gap: 5px;
+    margin-left: 15px;
+    overflow: scroll;
+  }
+  /* .sevenDay div{
+    border: 1px solid green;
+  } */
+  .sevenDay div p:nth-child(1){
+    font-size: 13.5px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+  }
+  .sevenDay div span:nth-child(2){
+    font-size: 14.5px;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+  .sevenDay div span:nth-child(3){
+    font-size: 14.5px;
+    text-align: center;
+  }
+  .sevenDay div img{
+    width: 25px;
+    margin-left: 16px;
+    margin-top: 7px;
+  }
+  .sevenDay div p:nth-child(5){
+    font-size: 12.3px;
+    text-align: center;
+    margin-top: 2px;
+  }

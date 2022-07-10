@@ -1,19 +1,23 @@
+.permission{
+  margin-top: 150px;
+  text-align: center;
+}
 .App{
   display: flex;
 }
 .info{
   background-color: #8bd3e2;
   width: 580px;
-  height: 710px;
+  height: 750px;
   margin-left: 100px;
   /* margin-top: 10px; */
-  padding-top: 30px;
+  padding-top: 13px;
 }
 .map{
   width: 470px;
   height: 430px;
   margin-left: 100px;
-  margin-top: 130px;
+  margin-top: 140px;
 }
 .iframeBox{
   width: 470px;
@@ -92,7 +96,7 @@ input:focus{
 }
 .graphs{
   margin: auto;
-  height: 420px;
+  height: 458px;
   width: 90%;
   margin-top: 17px;
   border-radius: 20px;
@@ -100,7 +104,7 @@ input:focus{
 }
 .TempImg{
   display: flex;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .TempImg div:nth-child(1) {
   font-size: 37px;
@@ -119,23 +123,12 @@ input:focus{
   width: 42px;
 }
 .graphDiv{
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   margin-top: -10px;
 }
-.App-header{
-  border: 1px solid red;
-  width: 330px;
-  height: 220px;
-  margin-left: -440px;
-  margin-top: 180px;
-}
-.tempGraph{
-  position: relative;
-  user-select: none;
-  -webkit-appearance: none;
-}
+
 .pressureHumidity{
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   height: 40px;
 }
