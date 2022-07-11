@@ -1,7 +1,10 @@
+import React, {Component} from "react";
 import './App.css';
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCity, set12Hour, setToDay } from "./redux/actions/actions";
 import Chart from 'react-apexcharts';
-import React, {Component} from "react";
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
@@ -31,8 +34,13 @@ function App() {
 let weather_key = "e03c2e0135a0e9ca1c601f3f18d309f2";
 let google_map_key = "AIzaSyB_iyI-ZoAiV9j3HaHH58AEo62mXxOhL5Q";
 
+const city = useSelector((state) => state.city.city);
+const temp12Hour = useSelector((state) => state.Temp12Hour.TwelveHour);
+const dispatch = useDispatch();
+console.log("IpCity", city);
+console.log("Temp12Hour", temp12Hour);
 
-const [city, setCity] = useState("");
+// const [city, setCity] = useState("");
 const [call, setCall] = useState(false);
 const [data, setData] = useState({
   coord: {lon: "", lat: ""},
@@ -42,7 +50,7 @@ const [data, setData] = useState({
   sys:{sunrise: "", sunset: ""},
   weather:[{main:""}]
 });
-const [permission, setPermission] = useState(false);
+
 const [sevenDayData, setSevenDayData] = useState("");
 const [hourlyTemp, sethourlyTemp] = useState("");
 const [sevenDaySunData, setSevenDaySunData] = useState("");
@@ -51,34 +59,55 @@ const [sevenDaySunData, setSevenDaySunData] = useState("");
 
 let map_url = `https://www.google.com/maps/embed/v1/search?key=${google_map_key}&q=${city}`;
 
-const handleCity = (e) => {
-  const {value} = e.target.value;
-  setCity(value);
-}
+// const handleCity = (e) => {
+//   const {value} = e.target.value;
+//   setCity(value);
+// }
 
-const getData = () => {
-  setCall("callApi");
-}
+// const getData = () => {
+//   setCall("callApi");
+// }
 
 
-useEffect(() => {
 
+const fetchIP = () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   }
 
-function showPosition(position) {
+async function showPosition(position) {
   console.log("USer Allowed");
-// setPermission(true);
+
 let IPtoken = "87e30487d2330d";
 
-axios.get(`https://ipinfo.io/json?token=${IPtoken}`)
-.then((res) => {
-  // if(permission == true) {
-    setCity(res.data.city);
-    console.log("city", city);
-  // }
+const res = await axios
+      .get(`https://ipinfo.io/json?token=${IPtoken}`)
+      .catch((err) => {
+        console.log("Error ", err);
+      });
+
+    dispatch(setCity(res.data.city));
+console.log("hiiiiiiiiiiiiiiiiiii");
+    // fetchLonLat();
+    // fetch_TwelveHour_Temp();
+
+}
+
+}
+
+
+
+
+useEffect(() => {
+
+fetchIP();
+
+
+// fetchLonLat();
+    // console.log("city", city);
+ 
     // user city weather
+
     // let url = `https://api.openweathermap.org/data/2.5/weather?q=${res.data.city}&appid=${weather_key}&units=metric`;
     // axios.get(url)
     // .then((res) => {
@@ -88,29 +117,32 @@ axios.get(`https://ipinfo.io/json?token=${IPtoken}`)
     // twelveHourTemp(res.data.coord.lat,res.data.coord.lon);  
     // })
 
-})
-
-}
-
 },[]);
 
-console.log("city1", city);
+
 
 
 useEffect(() => {
-    // user city weather
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
-    axios.get(url)
-    .then((res) => {
-    console.log("singleDay",res.data);
-    setData(res.data);
-    // sevenDayFun(res.data.coord.lat,res.data.coord.lon);
-    // twelveHourTemp(res.data.coord.lat,res.data.coord.lon);  
-    })
-},[city])
+  fetchLonLat();
+}, [city]);
 
-console.log("city2", city);
-console.log("dataISet", data);
+// console.log("city1", city);
+
+
+// useEffect(() => {
+//     // user city weather
+//     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
+//     axios.get(url)
+//     .then((res) => {
+//     console.log("singleDay",res.data);
+//     setData(res.data);
+//     // sevenDayFun(res.data.coord.lat,res.data.coord.lon);
+//     // twelveHourTemp(res.data.coord.lat,res.data.coord.lon);  
+//     })
+// },[city])
+
+// console.log("city2", city);
+// console.log("dataISet", data);
 
 // 7 day Data
 
@@ -176,26 +208,49 @@ console.log("dataISet", data);
 // }
 // }
 
+  
+   const fetchLonLat = async () => {
+    console.log("In fetchLatLon");
+    // if(city !== undefined) {
+    //   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
+    //   const response = await axios
+    //         .get(url)
+    //         .catch((err) => {
+    //           console.log("Error ", err);
+    //         });
+
+    //   dispatch(setToDay(response.data));
+    //   let longitude = response.data.coord.lon;
+    //   let lattitude = response.data.coord.lat; 
+    //   fetch_TwelveHour_Temp(lattitude,longitude);
+    // }
+   }
 
 
    // 24 hour temp forecast and sunrise sunset data
 
-  async function twelveHourTemp(lat,lon) {
+   const fetch_TwelveHour_Temp = async (lat,lon) => {
     let url24 = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${weather_key}&units=metric`;
     // axios.get(url24)
     // .then((res) => {
     //   console.log("24h", res);
     // })
-    try{
-    let res = await fetch(url24);
-    let data = await res.json();
-    console.log("24hrTemp", data.hourly);
-    // console.log("sevenDaySunData", data.daily);
-    sethourlyTemp(data.hourly);
+    const response = await axios
+          .get(url24)
+          .catch((err) => {
+            console.log("Error ",err);
+          });
+    dispatch(set12Hour(response.data.hourly));
+          console.log("24response", response.data.hourly);
+    // try{
+    // let res = await fetch(url24);
+    // let data = await res.json();
+    // console.log("24hrTemp", data.hourly);
+    // sethourlyTemp(data.hourly);
    
-    } catch(err) {
-      console.log(err.message);
-    }
+    // } catch(err) {
+    //   console.log(err.message);
+    // }
   }
 
 
@@ -285,7 +340,7 @@ function getItemParent(x){
   return (
    
     <>
-    {city == "" ? ( <h2 className='permission'> Please allow your location to use Weather App </h2> ) 
+    {city == undefined ? ( <h2 className='permission'> Please allow your location to use Weather App </h2> ) 
     : (
     <div className="App">
       
@@ -364,25 +419,26 @@ function getItemParent(x){
             </div>  */}
 
 
-             {/* <SevenDay sevenDayData={sevenDayData}/> */}
-             {/* <SevenDay data={data}/> */}
+             <SevenDay />
+          
 
-            {/* <div className='graphs'>
+             <div className='graphs'>
               
-              <TempAndImg sevenDayData={sevenDayData}/>
+              <TempAndImg />
              
-              <div className='graphDiv'>  
-                <ApexChartTemp hourlyTemp={hourlyTemp}/>
+             <div className='graphDiv'>  
+                <ApexChartTemp temp12Hour={temp12Hour}/>
               </div>
 
-              <PressureAndHum data={data}/>
+ 
+              <PressureAndHum />
             
+ {/*
+              <SunriseSunset />
 
-              <SunriseSunset data={data}/>
+              <SunriseSetGraph sevenDaySunData={sevenDaySunData}/> */}
 
-              <SunriseSetGraph sevenDaySunData={sevenDaySunData}/>
-
-            </div>      */}
+            </div>      
 
             
 
@@ -469,7 +525,7 @@ function getItemParent(x){
        </div>
     </div>
 
-    )}
+     )}
 
 
 {/* 

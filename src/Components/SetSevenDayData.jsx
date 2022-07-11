@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import "./SetSevenDayData.css";
+import { useSelector } from "react-redux"; 
+// import "./SetSevenDayData.css";
 
 import rain from "../images/rain.png";
 import mist from "../images/mist.png";
@@ -8,77 +9,47 @@ import clear from "../images/clear.png";
 import haze from "../images/haze.png";
 
 
-export default function SetSevenDayData({res}) {
+export default function SetSevenDayData() {
 
-    console.log("RES", res);
-    let data = res;
+  const sevenData = useSelector((state) => state.sevenDayData.sevenDayData);
+
+  console.log("reduxData", sevenData);
+
+  const renderSeven = sevenData.map((day) => {
+  const { name, minTemp, maxTemp, weather, currentDayTemp } = day;
+
+  return (
+  <div>
+    <p>{name}</p>
+    <span>{minTemp}</span>
+    <span>{maxTemp}</span>
+    <img src={weather == "Clouds"? cloud : weather == "Rain"? rain : weather == "Clear"? clear : weather == "Haze"? haze : mist}/>
+    <p>{weather}</p>
+  </div>
+  )
+
+  })
         
-         const [sevenDayData, setSevenDayData] = useState(
-            [{name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},{name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},
-             {name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},{name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},
-             {name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},{name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},
-             {name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},{name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""}
-            ]
-         );
+        //  const [sevenDayData, setSevenDayData] = useState(
+        //     [{name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},{name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},
+        //      {name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},{name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},
+        //      {name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},{name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},
+        //      {name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""},{name: "",minTemp:"",maxTemp:"",weather: "",currentDayTemp: ""}
+        //     ]
+        //  );
       
 
-         useEffect(() => {
-
-          // 7 Day data
-
-          let sevenDay_Data = [];
-      
-      
-          data.map(function(Eachday) {
-          
-          let date = Eachday.dt;
-          
-          function pad(value) {
-              return value > 9 ? value: "0" + value;
-          }
-          var utc = date;
-          var d = new Date(0); 
-          d.setUTCSeconds(utc);
-          var m = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
-          // console.log(m);
-          
-              const da = new Date(m);
-              // console.log("da" ,da);
-              
-            let wday = da.toDateString();
-              // console.log(typeof da.toDateString())
-              let weekday = "";
-              for(let i=0; i<3; i++) {
-              weekday = weekday + wday[i];
-              }
-              // console.log(weekday);
-            
-              let mintemp = Math.floor(Eachday.temp.min);
-              let maxtemp = Math.floor(Eachday.temp.max);
-              let currDayTemp = Math.floor(Eachday.temp.day);
-            
-          let dayInfo = {
-            name: weekday,
-            minTemp:`${mintemp}°`,
-            maxTemp:`${maxtemp}°`,
-            weather: Eachday.weather[0].main,
-            currentDayTemp: `${currDayTemp}°`
-          }   
-          
-          sevenDay_Data.push(dayInfo);
-          
-          })
-          
-          console.log("weekData", sevenDay_Data);
-          
-          setSevenDayData(sevenDay_Data);
-         },[res]);
+       
 
 
 
     return (
         <>
-               <div className='sevenDay'>
+
+        
+          {renderSeven}
+        
+               {/* <div className='sevenDay'>
 
  <div>
    <p>{`${sevenDayData[0].name}`}</p>
@@ -137,7 +108,7 @@ export default function SetSevenDayData({res}) {
    <p>{sevenDayData[7].weather}</p>
  </div>     
 
-             </div>       
+             </div>        */}
 
 
 

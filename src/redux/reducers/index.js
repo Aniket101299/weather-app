@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 
-import { cityReducer, sevenDayReducer } from "./reducers";
+import { cityReducer, sevenDayReducer, twelveHourReducer, toDayReducer } from "./reducers";
 
 const allReducers = combineReducers({
     city: cityReducer,
-    sevenDayData: sevenDayReducer
+    TodayData: toDayReducer,
+    sevenDayData: sevenDayReducer,
+    Temp12Hour: twelveHourReducer,
 });
 
 export default allReducers;

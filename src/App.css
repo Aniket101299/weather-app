@@ -58,6 +58,7 @@ input:focus{
   margin-top: 11px;
   margin-left: 70px;
 }
+
 .sevenDay{
   display: grid;
   grid-template-columns: repeat(8,60px);
@@ -94,6 +95,8 @@ input:focus{
   text-align: center;
   margin-top: 2px;
 }
+
+
 .graphs{
   margin: auto;
   height: 458px;
