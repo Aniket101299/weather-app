@@ -29,3 +29,24 @@ export const set12Hour = (TwelveHour) => {
         payload: TwelveHour
     }
 };
+
+export const setDates = (dates) => {
+    return {
+        type: ActionTypes.SET_DATES,
+        payload: dates
+    }
+};
+
+export const setSunrise = (sunrise) => {
+    return {
+        type: ActionTypes.SET_SUNRISE_DATA,
+        payload: sunrise
+    }
+};
+
+export const setSunset = (sunset) => {
+    return {
+        type: ActionTypes.SET_SUNSET_DATA,
+        payload: sunset
+    }
+};

@@ -61,7 +61,7 @@ const ApexChartTemp = () => {
  const temp12Hour = useSelector((state) => state.Temp12Hour.TwelveHour);
 
  console.log( "ApexChartTemp", temp12Hour);
- 
+
 
 
 // useEffect(() => {
@@ -92,8 +92,11 @@ const ApexChartTemp = () => {
           },
           dataLabels: {
               enabled: false
+          },
+          subtitle: {
+            text: 'Hourly Temperature Movements',
+            align: 'left',
           }
-          
         },
         // series: [{
         //   name: 'Temperature',
@@ -116,11 +119,11 @@ const ApexChartTemp = () => {
     [{
       name: 'Temperature',
       // data: [12,54,65,74,45,65,12,32,44,66,77,14]
-      data: [`${Math.floor(temp12Hour[0].temp)}°C`, Math.floor(temp12Hour[1].temp),
-            `${Math.floor(temp12Hour[2].temp)}°C`, Math.floor(temp12Hour[3].temp), 
+      data: [Math.floor(temp12Hour[0].temp), Math.floor(temp12Hour[1].temp),
+            Math.floor(temp12Hour[2].temp), Math.floor(temp12Hour[3].temp), 
             Math.floor(temp12Hour[4].temp), Math.floor(temp12Hour[5].temp), 
             Math.floor(temp12Hour[6].temp), Math.floor(temp12Hour[7].temp),
-             Math.floor(temp12Hour[10].temp),Math.floor(temp12Hour[11].temp)
+             Math.floor(temp12Hour[10].temp),Math.floor(temp12Hour[11].temp),
             ]
     }]
   )

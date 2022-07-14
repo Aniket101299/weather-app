@@ -26,6 +26,7 @@ import SunriseSetGraph from './Components/SunriseSetGraph';
 import SevenDay from './Components/SevenDay';
 import TempAndImg from './Components/TempAndImg';
 import PressureAndHum from './Components/PressureAndHum';
+
  
 
 
@@ -40,16 +41,22 @@ const dispatch = useDispatch();
 console.log("IpCity", city);
 console.log("Temp12Hour", temp12Hour);
 
-// const [city, setCity] = useState("");
-const [call, setCall] = useState(false);
-const [data, setData] = useState({
-  coord: {lon: "", lat: ""},
-  dt:"",
-  main:{temp:"",temp_min:"",temp_max:"",humidity:"",pressure: ""},
-  name:"",
-  sys:{sunrise: "", sunset: ""},
-  weather:[{main:""}]
-});
+const [Inputcity, setInputCity] = useState("");
+
+const handleCity = () => {
+  dispatch(setCity(Inputcity));
+  console.log("clicked on symbol");
+}
+
+// const [call, setCall] = useState(false);
+// const [data, setData] = useState({
+//   coord: {lon: "", lat: ""},
+//   dt:"",
+//   main:{temp:"",temp_min:"",temp_max:"",humidity:"",pressure: ""},
+//   name:"",
+//   sys:{sunrise: "", sunset: ""},
+//   weather:[{main:""}]
+// });
 
 const [sevenDayData, setSevenDayData] = useState("");
 const [hourlyTemp, sethourlyTemp] = useState("");
@@ -211,19 +218,19 @@ useEffect(() => {
   
    const fetchLonLat = async () => {
     console.log("In fetchLatLon");
-    // if(city !== undefined) {
-    //   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
-    //   const response = await axios
-    //         .get(url)
-    //         .catch((err) => {
-    //           console.log("Error ", err);
-    //         });
+    if(city !== undefined) {
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
+      const response = await axios
+            .get(url)
+            .catch((err) => {
+              console.log("Error ", err);
+            });
 
-    //   dispatch(setToDay(response.data));
-    //   let longitude = response.data.coord.lon;
-    //   let lattitude = response.data.coord.lat; 
-    //   fetch_TwelveHour_Temp(lattitude,longitude);
-    // }
+      // dispatch(setToDay(response.data));
+      let longitude = response.data.coord.lon;
+      let lattitude = response.data.coord.lat; 
+      fetch_TwelveHour_Temp(lattitude,longitude);
+    }
    }
 
 
@@ -290,11 +297,11 @@ useEffect(() => {
 //   .then((res) => {setData(res.data); console.log(res)})
 //   },[])
 
-const [item2, setItem2] = useState("");
+// const [item2, setItem2] = useState("");
 
-function getItemParent(x){
-    setItem2(x);
-}
+// function getItemParent(x){
+//     setItem2(x);
+// }
 
 
 
@@ -350,8 +357,8 @@ function getItemParent(x){
           <div className='inDiv'>
             <div className='searchBox'> 
                 <div> <FontAwesomeIcon className='location' icon={faLocationDot} /> </div> 
-                <div> <input className='input' placeholder="Search" ></input> </div> 
-                <div> <FontAwesomeIcon className='searchIcon' icon={faMagnifyingGlass} />  </div>
+                <div> <input onChange={(e) => setInputCity(e.target.value)} className='input' type="text" placeholder="Search" ></input> </div> 
+                <div> <FontAwesomeIcon onClick={() => handleCity()} className='searchIcon' icon={faMagnifyingGlass} />  </div>
             </div>
       
             {/* <h2>{`city: ${city}`}</h2> */}
@@ -427,16 +434,18 @@ function getItemParent(x){
               <TempAndImg />
              
              <div className='graphDiv'>  
-                <ApexChartTemp temp12Hour={temp12Hour}/>
-              </div>
+                <ApexChartTemp />
+            </div>
 
  
               <PressureAndHum />
             
- {/*
               <SunriseSunset />
+ 
 
-              <SunriseSetGraph sevenDaySunData={sevenDaySunData}/> */}
+             <SunriseSetGraph />
+
+    
 
             </div>      
 

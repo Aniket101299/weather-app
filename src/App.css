@@ -1,22 +1,26 @@
+body{
+  background-color: black;
+}
 .permission{
   margin-top: 150px;
   text-align: center;
+  color: white;
 }
 .App{
   display: flex;
 }
 .info{
-  background-color: #8bd3e2;
+  /* background-color: #8bd3e2; */
   width: 580px;
   height: 750px;
-  margin-left: 100px;
+  margin-left: 220px;
   /* margin-top: 10px; */
-  padding-top: 13px;
+  padding-top: 9px;
 }
 .map{
   width: 470px;
   height: 430px;
-  margin-left: 100px;
+  margin-left: 10px;
   margin-top: 140px;
 }
 .iframeBox{
@@ -49,14 +53,22 @@
 input:focus{
   outline: none;
 }
+input[type="text"]{
+  font-size:14px;
+  font-weight: 600;
+}
 .location{
   height:19px;
   margin-left: 20px;
   margin-top: 9px;
 }
 .searchIcon{
-  margin-top: 11px;
-  margin-left: 70px;
+  /* width: 30px; */
+  padding: 5px;
+  margin-top: 6px;
+  margin-left: 45px;
+  cursor: pointer;
+  /* border: 1px solid red; */
 }
 
 .sevenDay{

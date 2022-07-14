@@ -3,5 +3,8 @@ export const ActionTypes = {
     SET_TODAY: "SET_TODAY",
     SET_SEVENDAY : "SET_SEVENDAY",
     SET_12_HOUR : "SET_12_HOUR",
+    SET_DATES: "SET_DATES",
+    SET_SUNRISE_DATA : "SET_SUNRISE_DATA",
+    SET_SUNSET_DATA : "SET_SUNSET_DATA",
 }
 

@@ -1,5 +1,9 @@
+import { useState } from "react"
+
 export default function SunApi() {
+
+
     return (
-        {sunData}
+       <div>hi</div>
     )
 }

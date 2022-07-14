@@ -94,3 +94,4 @@ useEffect(() => {
     
     setSevenDayData(sevenDay_Data);
    },[]);
+   
