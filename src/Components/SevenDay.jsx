@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { setSevenDay } from "../redux/actions/actions";
-import SetSevenDayData from "./SetSevenDayData";
+import { setSevenDay, setOnclick } from "../redux/actions/actions";
+// import SetSevenDayData from "./SetSevenDayData";
 
-// import "./SevenDay.css";
+import "./SevenDay.css";
 
 import rain from "../images/rain.png";
 import mist from "../images/mist.png";
@@ -16,30 +16,26 @@ export default function SevenDay({data}) {
 
     let weather_key = "e03c2e0135a0e9ca1c601f3f18d309f2";
 
+    const [colour, setColour] = useState(["white","white","white","white","white","white","white","white"]);
+    const [border, setBorder] = useState(["white","white","white","white","white","white","white","white"]);
+  
     const city = useSelector((state) => state.city.city);
+    const sevenData = useSelector((state) => state.sevenDayData.sevenDayData);
+    const clickRise = useSelector((state) => state.sunriseData.sunriseData);
+    const clickSet = useSelector((state) => state.sunsetData.sunsetData);
+    const allSeven = useSelector((state) => state.allSevenData.allSevenData);
 
     console.log("seven", city);
 
     const dispatch = useDispatch();
 
-    // const [res, setRes] = useState(
-    //    [{dt:"",temp:{day:"",min:"", max:""},weather:[{main:""}]},{dt:"",temp:{day:"",min:"", max:""},weather:[{main:""}]},
-    //     {dt:"",temp:{day:"",min:"", max:""},weather:[{main:""}]},{dt:"",temp:{day:"",min:"", max:""},weather:[{main:""}]},
-    //     {dt:"",temp:{day:"",min:"", max:""},weather:[{main:""}]},{dt:"",temp:{day:"",min:"", max:""},weather:[{main:""}]},
-    //     {dt:"",temp:{day:"",min:"", max:""},weather:[{main:""}]},{dt:"",temp:{day:"",min:"", max:""},weather:[{main:""}]}
-    //    ]
-    // );
 
-  
-
-    // let lattitude = data.coord.lat;
-    // let longitude = data.coord.lon;
-
-    // console.log("componentData", data);
     
     
     const fetchCityLatLon = async () => {
-        
+
+      try{
+ 
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
         const response = await axios
               .get(url)
@@ -51,12 +47,19 @@ export default function SevenDay({data}) {
 
     fetchSevenDay(longitude, lattitude);
 
-        console.log("singleDay",response.data.coord);
+      console.log("singleDay",response.data.coord);
+
+    } catch(err) {
+      console.log("Error", err);
+    }
+
     }
 
 
     const fetchSevenDay = async (lon, lat) => {
-   
+
+      try{
+
         let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${weather_key}&units=metric`;
     
         const response = await axios
@@ -116,6 +119,10 @@ export default function SevenDay({data}) {
 
               console.log( "Seven" ,response.data.daily);
 
+            } catch(err) {
+              console.log("Error", err);
+            }
+
     }
 
 
@@ -124,30 +131,62 @@ export default function SevenDay({data}) {
 
     useEffect(() => {
 
-
     // user city weather
     
     fetchCityLatLon();
 
-    // setData(res.data);
-    // sevenDayFun(res.data.coord.lat,res.data.coord.lon);
-    // twelveHourTemp(res.data.coord.lat,res.data.coord.lon);  
-    
-
     console.log("hi inside useEffect");
 
+    },[city]);
 
-        // axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lattitude}&lon=${longitude}&appid=${weather_key}&units=metric`)
-        // .then((res) => console.log("sunRes",res.daily))
-    //     let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lattitude}&lon=${longitude}&appid=${weather_key}&units=metric`;
-    //     fetch(url)
-    //     .then((responce) => responce.json())
-    //     .then((res) => {
-    //         console.log("sunRes", res.daily);
-    //         setRes(res.daily);
-    // });
-    },[city])
 
+
+    const setData = (index, currentDayTemp, weather) => {
+      let rise = clickRise[index];
+      let set = clickSet[index];
+      let pressure = allSeven[index].pressure;
+      let humidity = allSeven[index].humidity;
+      console.log("index", index);
+      dispatch(setOnclick({
+        "rise":rise, "set":set, "pressure":pressure, 
+        "humidity":humidity, "currentDayTemp":currentDayTemp,
+        "weather":weather, clicked: true
+      }));
+      let colours = [];
+      let borders = [];
+      for(let i=0; i<colour.length; i++) {
+        if(i != index) {
+          colours.push("white");
+          borders.push("white");
+        } else {
+          colours.push("#fffdf7");
+          borders.push("#00a6fa");
+        }
+      }
+      setColour(colours);
+      setBorder(borders);
+    }
+
+
+
+    const renderSeven = sevenData.map((day,i) => {
+
+      const { name, minTemp, maxTemp, weather, currentDayTemp } = day;
+      
+      // (clicked && clicked == true) ? {backgroundColor:"blue"} : 
+      // style={{backgroundColor: "gray"}}
+      
+      return (
+      <div className="individual" key={i} onClick={() => setData(i, currentDayTemp, weather)} style={{backgroundColor: colour[i], border: `3px solid ${border[i]}`}}>
+        <p>{name}</p>
+        <span>{minTemp}</span>
+        <span>{maxTemp}</span>
+        <img src={weather == "Clouds"? cloud : weather == "Rain"? rain : weather == "Clear"? clear : weather == "Haze"? haze : mist}/>
+        <p>{weather}</p>
+      </div>
+      )
+      
+      })
 
 
       
@@ -157,7 +196,8 @@ export default function SevenDay({data}) {
     return (
         <>
          <div className="sevenDay"> 
-        <SetSevenDayData />    
+             {/* <SetSevenDayData />     */}
+             {sevenData && renderSeven }
          </div> 
         </>
     )

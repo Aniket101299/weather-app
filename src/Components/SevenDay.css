@@ -4,15 +4,23 @@
     grid-gap: 5px;
     margin-left: 15px;
     overflow: scroll;
+    margin-top: 7px;
+    /* border: 1px solid red; */
+    height:135px;
   }
   /* .sevenDay div{
     border: 1px solid green;
   } */
+  /* .sevenDay div:nth-child(1) {
+    background-color: #fffdf7 !important;
+    border: 3px solid #00a6fa !important;
+  } */
+ 
   .sevenDay div p:nth-child(1){
     font-size: 13.5px;
     font-weight: 700;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 0px;
   }
   .sevenDay div span:nth-child(2){
@@ -33,4 +41,5 @@
     font-size: 12.3px;
     text-align: center;
     margin-top: 2px;
+    margin-bottom: 2px;
   }

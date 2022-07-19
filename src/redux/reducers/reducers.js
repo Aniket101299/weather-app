@@ -72,3 +72,21 @@ export const sunsetReducer = (state = {}, {type, payload} ) => {
     }
 };
 
+
+export const onclickReducer = (state = {}, {type, payload} ) => {
+    switch (type) {
+        case ActionTypes.SET_ONCLICK:
+            return {...state, onclickData: payload};
+        default:
+            return state;     
+    }
+};
+
+export const allSevenReducer = (state = {}, {type, payload} ) => {
+    switch (type) {
+        case ActionTypes.SET_ALL_SEVEN_DATA:
+            return {...state, allSevenData: payload};
+        default:
+            return state;     
+    }
+};

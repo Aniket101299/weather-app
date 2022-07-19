@@ -8,6 +8,7 @@ export default function SunriseSunset() {
 
   let weather_key = "e03c2e0135a0e9ca1c601f3f18d309f2";
   const city = useSelector((state) => state.city.city);
+  const clickData = useSelector((state) => state.onclickData.onclickData);
   console.log("Suncity",city);
 
   
@@ -15,6 +16,8 @@ export default function SunriseSunset() {
     const [Sunset, setSunset] = useState("");
 
   const fetchCityData = async () => {
+    try{
+
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
     const response = await axios
           .get(url)
@@ -83,25 +86,17 @@ export default function SunriseSunset() {
           console.log("rise",rise);
           console.log("set",set);
 
+        } catch(err) {
+          console.log("Error", err);
+        }
 
-        let longitude = response.data.coord.lon;
-        let lattitude = response.data.coord.lat; 
-        // fetch_SunData(lattitude,longitude);
   }
   
-  // const fetch_SunData = async (lat,lon) => {
-  //   let url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&formatted=0`;
-  
-  //   const response = await axios
-  //         .get(url)
-  //         .catch((e) => {
-  //           console.log("Err ", e);
-  //         });
-  //   console.log("DataTry", response);
-  // }
-  
+
   
 const fetch_SunData = async (lat, lon) => {
+
+  try{
 
   let url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&formatted=0`;
 
@@ -161,12 +156,11 @@ console.log("ONEDAYSUN", response.data.results);
 
     console.log("rise",rise);
     console.log("set",set);
-    // setSunrise(x);
-    // setSunset(y);
-    // console.log( "sunrise", x);
-    // console.log( "sunset", y);
-    // console.log( "sunrise" ,x.length);
-    // console.log( "sunset" ,y.length);
+
+  } catch(err) {
+    console.log("Error", err);
+  }
+
 }
 
 
@@ -178,181 +172,22 @@ console.log("ONEDAYSUN", response.data.results);
   
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // const todayData = useSelector((state) => state.TodayData.TodayData.coord);
-    // const { lon, lat } = todayData;
-  
-  // console.log("sunri", todayData);
-
-  // var url;
-
-  // if(todayData !== undefined) {
-  //   console.log("yes");
-  //   url = `https://api.sunrise-sunset.org/json?lat=${todayData.lat}&lng=${todayData.lon}&formatted=0`;
-  // }
-
-
-
-
-
-
-
-
-
-
-  // useEffect(() => {
-
-  // fetchSunData();  
-  
-  // },[city]);
-
-  
-
-
-
-//   function pad(value) {
-//     return value > 9 ? value: "0" + value;
-//   }
-
-//   let rise = data.sys.sunrise;
-//   console.log("rise",rise);
-//   let d = new Date(0); 
-//   d.setUTCSeconds(rise);
-//   let sunrise = pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds());
-//   console.log("sunrise",sunrise);
-
-
-//   let set = data.sys.sunset;
-//   let d1 = new Date(0); 
-//   d1.setUTCSeconds(set);
-//   let sunset = pad(d1.getUTCHours()) + ':' + pad(d1.getUTCMinutes()) + ':' + pad(d1.getUTCSeconds());
-//   console.log("sunset",sunset);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // sunrise and sunset
-
-  // const [sunrise, setSunrise] = useState("");
-  // const [sunset, setSunset] = useState("");
-
-  // useEffect(() => {
-
-  //   let url = `https://api.sunrise-sunset.org/json?lat=${data.coord.lat}&lng=${data.coord.lon}&formatted=0`;
-
-  //  fetch(url)
-  // .then(res => res.json())
-  // .then(data => {
-  //   const sunrise = new Date(data.results.sunrise);
-  //   const sunset = new Date(data.results.sunset);
-  //   let x = sunrise.toString();
-  //   let y = sunset.toString();
-  //   let rise = "";
-  //   let set = "";
-  //   for(let i=16; i<21; i++) {
-  //       rise+= x[i];
-  //       set+= y[i];
-  //   }
-  // // console.log("rise",rise);
-  // // console.log("set",set);
-  //   let riseHour = "";
-  //   let setHour = ""; 
-
-  //   for(let i=0; i<2; i++) {
-  //       riseHour+= rise[i];
-  //   }
-
-  //   for(let i=0; i<2; i++) {
-  //     setHour+= set[i];
-  //   }
-
-  //   riseHour = +riseHour;
-  //   setHour = +setHour;
-    
-  //   if(riseHour>12) {
-  //      riseHour = riseHour - 12;
-  //      rise = rise.substring(2);
-  //      rise = riseHour + rise;
-  //   } else {
-  //      rise = rise.substring(1);
-  //   }
-
-  //   if(setHour>12) {
-  //     setHour = setHour - 12;
-  //     set = set.substring(2);
-  //     set = setHour + set;
-  //   } else {
-  //     set = set.substring(1);
-  //   }
-
-  //   setSunrise(rise);
-  //   setSunset(set);
-    
-
-  //   // console.log("rise",rise);
-  //   // console.log("set",set);
-  //   // setSunrise(x);
-  //   // setSunset(y);
-  //   // console.log( "sunrise", x);
-  //   // console.log( "sunset", y);
-  //   // console.log( "sunrise" ,x.length);
-  //   // console.log( "sunset" ,y.length);
-  // });
-  // },[]);
-
-  
-
-
-
-  // function pad(value) {
-  //   return value > 9 ? value: "0" + value;
-  // }
-
-  // let rise = data.sys.sunrise;
-  // console.log("rise",rise);
-  // let d = new Date(0); 
-  // d.setUTCSeconds(rise);
-  // let sunrise = pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds());
-  // console.log("sunrise",sunrise);
-
-
-  // let set = data.sys.sunset;
-  // let d1 = new Date(0); 
-  // d1.setUTCSeconds(set);
-  // let sunset = pad(d1.getUTCHours()) + ':' + pad(d1.getUTCMinutes()) + ':' + pad(d1.getUTCSeconds());
-  // console.log("sunset",sunset);
-
-
-
-
 return (
+
+  <> 
+
+{/* {(clickData &&   
+<div className='sunriseSunset'>
+  <div>
+    <p>Sunrise</p>
+    <p> {clickData.rise} am</p>
+  </div>
+  <div>
+    <p>Sunset</p>
+    <p> {clickData.set} pm</p>
+  </div>
+</div>) || 
+
   <div className='sunriseSunset'>
     <div>
       <p>Sunrise</p>
@@ -363,5 +198,9 @@ return (
       <p> {Sunset} pm</p>
     </div>
   </div>
+} */}
+
+</>
+
 )
 }

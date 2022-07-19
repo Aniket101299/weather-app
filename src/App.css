@@ -71,16 +71,16 @@ input[type="text"]{
   /* border: 1px solid red; */
 }
 
-.sevenDay{
+/* .sevenDay{
   display: grid;
   grid-template-columns: repeat(8,60px);
   grid-gap: 5px;
   margin-left: 15px;
   overflow: scroll;
 }
-/* .sevenDay div{
+.sevenDay div{
   border: 1px solid green;
-} */
+}
 .sevenDay div p:nth-child(1){
   font-size: 13.5px;
   font-weight: 700;
@@ -106,7 +106,7 @@ input[type="text"]{
   font-size: 12.3px;
   text-align: center;
   margin-top: 2px;
-}
+} */
 
 
 .graphs{
@@ -186,71 +186,3 @@ input[type="text"]{
 
 
 
-
-
-
-
-
-
-
-
-
-
-/* 
-
-.box{
-  display: flex;
-  width: 1360px;
-  height: 550px;
-  background-color:lavender;
-  border-radius: 10px;
-  margin-top: 30px;
-}
-.map{
-  width: 550px;
-  height: 510px;
-  margin-left: 100px;
-  margin-top: 105px;
-}
-.weather{
-  width: 720px;
-  height: 520px;
-  border: 1px solid red;
-  margin-top: 20px;
-  border-radius: 10px;
-}
-.weather h1{
-  text-align: center;
-  margin-top: 2px;
-}
-.detail{
-  display: flex;
-}
-.detail div{
-  border: 1px solid red;
-  width: 100px;
-  margin-left: 15px;
-  border-radius: 15px;
-  background-color:violet;
-}
-.sevenData{
-  display: grid;
-  grid-template-columns: repeat(7,auto);
-  grid-gap: 26px;
-  border: 1px solid red;
-  background-color: black;
-  color: white;
-  margin-left: 15px;
-  border-radius: 10px;
-}
-.weather #title{
-  text-align: center;
-}
-.sevenData div{
-  border: 1px solid blue;
-  text-align: left;
-}
-.sevenData div img{
-  height: 50px;
-  width: 50px;
-} */

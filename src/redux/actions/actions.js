@@ -50,3 +50,17 @@ export const setSunset = (sunset) => {
         payload: sunset
     }
 };
+
+export const setOnclick = (onclickData) => {
+    return {
+        type: ActionTypes.SET_ONCLICK,
+        payload: onclickData
+    }
+};
+
+export const setAllSevenData = (seven) => {
+    return {
+        type: ActionTypes.SET_ALL_SEVEN_DATA,
+        payload: seven
+    }
+};

@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 
-import { cityReducer, sevenDayReducer, twelveHourReducer, toDayReducer, sunriseReducer, sunsetReducer, datesReducer } from "./reducers";
+import { cityReducer, sevenDayReducer, twelveHourReducer, toDayReducer, sunriseReducer,
+         sunsetReducer, datesReducer, onclickReducer, allSevenReducer } from "./reducers";
 
 
 const allReducers = combineReducers({
@@ -10,7 +11,9 @@ const allReducers = combineReducers({
     Temp12Hour: twelveHourReducer,
     sunriseData: sunriseReducer,
     sunsetData: sunsetReducer,
-    datesData: datesReducer
+    datesData: datesReducer,
+    onclickData: onclickReducer,
+    allSevenData: allSevenReducer
 });
 
 export default allReducers;

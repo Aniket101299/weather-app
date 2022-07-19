@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setSunrise, setSunset, setDates } from "../redux/actions/actions";
 import Chart from 'react-apexcharts'
 import "./SunriseSetGraph.css";
-import { useRef } from "react";
+
 
  
 
@@ -25,12 +25,6 @@ let arr = [];
 let sunR = [];
 localStorage.setItem("riseData", JSON.stringify(sunR));
 let riseSun = JSON.parse(localStorage.getItem("riseData")) || [];
-// var sunriseData = [];
-// var sunsetData = [];
-
-
-// const [sunriseData, setSunriseData] = useState([]);
-// const [sunsetData, setSunsetData] = useState([]);
 
 
 const fetchCityData = async () => {
@@ -49,6 +43,7 @@ const fetchCityData = async () => {
 
 const fetch_SunData = (lattitude,longitude) => {
 
+  try{
   
   let url7Day = `http://api.openweathermap.org/data/2.5/onecall?lat=${lattitude}&lon=${longitude}&appid=${weather_key}&units=metric`;
   
@@ -89,9 +84,6 @@ var m = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTC
     localStorage.setItem(`date${i}`, JSON.stringify(dateOfGraph));
     dates.push(dateOfGraph);
 
-    // console.log(dateOfGraph);
-
-    // getSunData(lattitude,longitude,dateOfGraph);
     
     let riseSun = Eachday.sunrise;
     let setSun = Eachday.sunset;
@@ -182,6 +174,10 @@ dispatch(setSunset(sunsetData));
 
 })
 
+} catch(err) {
+  console.log("Error", err);
+}
+
 }
 
 
@@ -195,11 +191,12 @@ const getSunData =  (lattitude, longitude) => {
 
   Dates.forEach((date, i) => {
 
+ try{
+
   let url1 = `https://api.sunrise-sunset.org/json?lat=${lattitude}&lng=${longitude}&date=${date}&formatted=0`;
 
   fetch(url1).then((res) => res.json()).then((data) => {
-    
-//  console.log("YYYYYYYY",data);
+ 
      const sunrise = new Date(data.results.sunrise);
      const sunset = new Date(data.results.sunset);
      let x = sunrise.toString();
@@ -270,40 +267,25 @@ const getSunData =  (lattitude, longitude) => {
  localStorage.setItem(`sunrise${i}`, JSON.stringify(newRise));
  localStorage.setItem(`sunset${i}`, JSON.stringify(newSet));
 
-//  sunriseData = [...sunriseData, newRise];
-//  sunsetData = [...sunsetData, i];
-
-//  sunriseData.push(newRise);
-//  sunsetData.push(newSet);
- 
-//  dispatch(setSunrise(newRise));
-//  dispatch(setSunset(newSet));
-//  setSunriseData([...sunriseData, newRise]);
-//  setSunsetData([...sunsetData, newSet]);
 
 
-      console.log(`rise${i}`, newRise);
-      console.log(`set${i}`,newSet);
+      // console.log(`rise${i}`, newRise);
+      // console.log(`set${i}`,newSet);
  
     });
+  } catch(err) {
+    console.log("Error", err);
+   }   
 
 });
 
 
 
-//  console.log("sunriseData", sunriseData);
-//  console.log("sunsetData", sunsetData);
-//  localStorage.setItem("riseData", sunriseData);
-
-  // dispatch(setSunrise(riseSunData));
-  // dispatch(setSunset(sunsetData));
 
 
 }
 
-// console.log("sunriseData", sunriseData);
 
-// console.log("sunsetData", sunsetData);
 
 
 useEffect(() => {
@@ -321,47 +303,10 @@ let six = JSON.parse(localStorage.getItem("date5"));
 let seven = JSON.parse(localStorage.getItem("date6"));
 let eight = JSON.parse(localStorage.getItem("date7"));
 
-let rise1 = Number(JSON.parse(localStorage.getItem("sunrise0")));
-let rise2 = Number(JSON.parse(localStorage.getItem("sunrise1")));
-let rise3 = Number(JSON.parse(localStorage.getItem("sunrise2")));
-let rise4 = Number(JSON.parse(localStorage.getItem("sunrise3")));
-let rise5 = Number(JSON.parse(localStorage.getItem("sunrise4")));
-let rise6 = Number(JSON.parse(localStorage.getItem("sunrise5")));
-let rise7 = Number(JSON.parse(localStorage.getItem("sunrise6")));
-let rise8 = Number(JSON.parse(localStorage.getItem("sunrise7")));
-
-let set1 = Number(JSON.parse(localStorage.getItem("sunset0")));
-let set2 = Number(JSON.parse(localStorage.getItem("sunset1")));
-let set3 = Number(JSON.parse(localStorage.getItem("sunset2")));
-let set4 = Number(JSON.parse(localStorage.getItem("sunset3")));
-let set5 = Number(JSON.parse(localStorage.getItem("sunset4")));
-let set6 = Number(JSON.parse(localStorage.getItem("sunset5")));
-let set7 = Number(JSON.parse(localStorage.getItem("sunset6")));
-let set8 = Number(JSON.parse(localStorage.getItem("sunset7")));
 
 
 let riseSunData = JSON.parse(localStorage.getItem("riseData"))
 console.log("RISEDSUNDD", riseSunData);
-// const riseData = () => {
-//   if(sunriseData.length === 0) {
-//     return (<p>...Loading</p>)
-//   } else {
-//     return (
-//       [sunriseData[0],sunriseData[1],sunriseData[2],sunriseData[3],sunriseData[4],sunriseData[5],sunriseData[6],sunriseData[7]]
-//     )
-//   } 
-// }
-
-// const setData = () => {
-//   if(sunsetData.length === 0) {
-//     return (<p>...Loading</p>)
-//   } else {
-//     return (
-//       [sunsetData[0],sunsetData[1],sunsetData[2],sunsetData[3],sunsetData[4],sunsetData[5],sunsetData[6],sunsetData[7]]
-//     )
-//   }
-// }
-
 
 
 
@@ -374,17 +319,11 @@ const sunData = () => {
   return (
     [{
       name: 'Sunrise',
-      // data:[10,20,30,40,50,60,70,80]
-      // data:[rise1,rise2,rise3,rise4,rise5,rise6,rise7,rise8],
       data: [riseData[0],riseData[1],riseData[2],riseData[3],riseData[4],riseData[5],riseData[6],riseData[7]],
-      // data:[sunriseData[0],sunriseData[1],sunriseData[2],sunriseData[3],sunriseData[4],sunriseData[5],sunriseData[6],sunriseData[7]]
      
     },{
       name: 'Sunset',
-      // data:[20,40,50,60,70,80,100,120]
-      // data:[set1,set2,set3,set4,set5,set6,set7,set8]
       data: [setData[0],setData[1],setData[2],setData[3],setData[4],setData[5],setData[6],setData[7]],
-      // data:[sunsetData[0],sunsetData[1],sunsetData[2],sunsetData[3],sunsetData[4],sunsetData[5],sunsetData[6],sunsetData[7]]
       
     }]
   )
@@ -448,13 +387,7 @@ const sunData = () => {
             },
             colors: ['#feeb2d', '#ff7a03']
             }, 
-          // series: [{
-          //   name: 'Sunrise',
-          //   data:[rise1,rise2,rise3,rise4,rise5,rise6,rise7,rise8],
-          // },{
-          //   name: 'Sunset',
-          //   data:[set1,set2,set3,set4,set5,set6,set7,set8]
-          // }]
+
         }
     
 
