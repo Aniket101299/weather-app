@@ -176,7 +176,7 @@ return (
 
   <> 
 
-{/* {(clickData &&   
+{(clickData &&   
 <div className='sunriseSunset'>
   <div>
     <p>Sunrise</p>
@@ -198,7 +198,7 @@ return (
       <p> {Sunset} pm</p>
     </div>
   </div>
-} */}
+}
 
 </>
 
