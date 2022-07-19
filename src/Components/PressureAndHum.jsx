@@ -53,7 +53,7 @@ const setPressHum = () => {
     return(
         <>
 
-        {/* { (clickData &&   
+        { (clickData &&   
         <div className='pressureHumidity'>
                 <div>
                   <p>Pressure</p>
@@ -63,7 +63,7 @@ const setPressHum = () => {
                   <p>Humidity</p>
                   <p>{clickData.humidity} %</p>
                 </div>
-      </div> ) || setPressHum() } */}
+      </div> ) || setPressHum() }
 
         </>
     )
