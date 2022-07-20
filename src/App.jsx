@@ -116,8 +116,8 @@ useEffect(() => {
               });
   
       
-        let longitude = response.data.coord.lon;
-        let lattitude = response.data.coord.lat; 
+        let longitude = await response.data.coord.lon;
+        let lattitude = await response.data.coord.lat; 
         fetch_TwelveHour_Temp(lattitude,longitude);
 
       } catch(err) {
@@ -142,9 +142,14 @@ useEffect(() => {
       //       let x = new Date((response.data.hourly[47].dt)*1000);
       //       x.toString();
       // console.log("24response", x);
-      // console.log("HELLO", response.data.daily);
+      let HourlyData = await response.data.hourly;
+      let temperatures = [];
+      HourlyData.map((obj) => {
+        temperatures.push(Math.floor(obj.temp));
+      })
+      // console.log("HELLO", temperatures);
       dispatch(setAllSevenData(response.data.daily));
-      dispatch(set12Hour(response.data.hourly));
+      dispatch(set12Hour(temperatures));
     } catch(err) {
       console.log("Error", err);
     }

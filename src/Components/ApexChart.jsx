@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import { useEffect } from "react";
-import Chart from 'react-apexcharts'
+import { useState } from "react";
+import Chart from 'react-apexcharts';
 import { useSelector } from "react-redux";
 
 
@@ -10,49 +10,12 @@ const ApexChartTemp = () => {
  
  console.log( "ApexChartTemp", temp12Hour);
 
-const Graph = () => {
-  return <> <Charts temp = {temp12Hour}/> </>
-}
+//  const [temperature, setTemperature] = useState([]); 
 
-  
-    
-//  const tempData = () =>  {
-//   if(temp12Hour === undefined) {
-//     return ("...Loading"); 
-//   }  else {
-//   return (
-//     [{
-//       name: 'Temperature',
-//       data: [Math.floor(temp12Hour[0].temp), Math.floor(temp12Hour[1].temp),
-//             Math.floor(temp12Hour[2].temp), Math.floor(temp12Hour[3].temp), 
-//             Math.floor(temp12Hour[4].temp), Math.floor(temp12Hour[5].temp), 
-//             Math.floor(temp12Hour[6].temp), Math.floor(temp12Hour[7].temp),
-//              Math.floor(temp12Hour[10].temp),Math.floor(temp12Hour[11].temp),
-//             ]
-//     }]
-//   )
-//   }
-// }
-
- 
-    
-      return (
-          <div className="chart">
-               {/* <Chart options={state.options} series={tempData()} type="area" width={300} height={150} /> */}
-               {temp12Hour && <Graph/> }
-          </div>
-      )
-  
-}
-
-export default ApexChartTemp;
-
-
-class Charts extends Component {
-  constructor(props) {
-    super(props);
-    console.log("PROPS", props.temp);
-    this.state = {
+//  setTemperature(temp12Hour);
+let  state; 
+if(temp12Hour !== undefined) {
+  state = {
       options: {
         chart: {
             type: 'area',
@@ -61,7 +24,7 @@ class Charts extends Component {
             }
           },
         xaxis: {
-          categories: [1,2,3,4,5,6,7,8,9,10,11,12]
+          categories: [1,2,3,4,5,6,7,8,9,10,11,12],
         },
         yaxis: {
           show: false,
@@ -77,22 +40,57 @@ class Charts extends Component {
           align: 'left',
         }
       },
-      series:  [{
+      series:   [{
         name: 'Temperature',
-        data: [Math.floor(props.temp[0].temp), Math.floor(props.temp[1].temp),
-              Math.floor(props.temp[2].temp), Math.floor(props.temp[3].temp), 
-              Math.floor(props.temp[6].temp), Math.floor(props.temp[7].temp),
-               Math.floor(props.temp[10].temp),Math.floor(props.temp[11].temp),
+        data: [temp12Hour[0],temp12Hour[1],
+                temp12Hour[2],temp12Hour[3], 
+                temp12Hour[4],temp12Hour[5], 
+                temp12Hour[6],temp12Hour[7],
+                temp12Hour[8],temp12Hour[9],
+                temp12Hour[10],temp12Hour[11],
               ]
       }]
+     
     }
-
-  }
-
-  render() {
-    return (
-      <Chart options={this.state.options} series={this.state.series} type="area" width={300} height={150} /> 
-    )
-  }
-
 }
+    
+//  const tempData = () =>  {
+//   if(temp12Hour === undefined) {
+//     return ("...Loading"); 
+//   }  else {
+//   return (
+//     [{
+//       name: 'Temperature',
+//       data: [Math.floor(temp12Hour[0].temp), Math.floor(temp12Hour[1].temp),
+//             Math.floor(temp12Hour[2].temp), Math.floor(temp12Hour[3].temp), 
+//             Math.floor(temp12Hour[4].temp), Math.floor(temp12Hour[5].temp), 
+//             Math.floor(temp12Hour[6].temp), Math.floor(temp12Hour[7].temp),
+//             Math.floor(temp12Hour[8].temp),Math.floor(temp12Hour[9].temp),
+//              Math.floor(temp12Hour[10].temp),Math.floor(temp12Hour[11].temp),
+//             ]
+//     }]
+//         [{
+//           name: 'Temperature',
+//           data: [temp12Hour[0],temp12Hour[1],
+//                   temp12Hour[2],temp12Hour[3], 
+//                   temp12Hour[4],temp12Hour[5], 
+//                   temp12Hour[6],temp12Hour[7],
+//                   temp12Hour[8],temp12Hour[9],
+//                   temp12Hour[10],temp12Hour[11],
+//                 ]
+//         }]
+//   )
+//   }
+// }
+
+ 
+    
+      return (
+          <div className="chart">
+               <Chart options={state.options} series={state.series} type="area" width={300} height={150} />
+          </div>
+      )
+  
+}
+
+export default ApexChartTemp; 
