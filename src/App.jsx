@@ -37,7 +37,7 @@ console.log("Temp12Hour", temp12Hour);
 
 const [Inputcity, setInputCity] = useState("");
 const [str, setStr] = useState("");
-const [container, setContainer] = useState([]);
+const [search, setSearch] = useState([]);
 
 
 const handleCity = () => {
@@ -132,7 +132,7 @@ useEffect(() => {
    const fetch_TwelveHour_Temp = async (lat,lon) => {
 
     try{
-      let url24 = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${weather_key}&units=metric`;
+      let url24 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${weather_key}&units=metric`;
     
       const response = await axios
             .get(url24)
@@ -157,29 +157,48 @@ useEffect(() => {
   }
 
 
-  useEffect(() => {
-    fetchMe();
-  }, [str])
+  // useEffect(() => {
+  //   fetchMe();
+  // }, [str])
 
   
-  const fetchMe = () => {
-    fetch(`https://spott.p.rapidapi.com/places/autocomplete?limit=10&skip=0&q=+${str}&type=CITY`, {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': '9e007d9903msh219bf5128f482f6p111a48jsn3651d0611401',
-        'X-RapidAPI-Host': 'spott.p.rapidapi.com'
-      }
+  // const fetchMe = () => {
+  //   fetch(`https://spott.p.rapidapi.com/places/autocomplete?limit=20&skip=0&q=+${str}&type=CITY`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'X-RapidAPI-Key': '9e007d9903msh219bf5128f482f6p111a48jsn3651d0611401',
+  //       'X-RapidAPI-Host': 'spott.p.rapidapi.com'
+  //     }
+  //   })
+  //     .then(response => response.json())
+  //     .then(response => {
+  //       setContainer(response);
+  //       console.log(response)})
+  //     .catch(err => console.error(err));
+  // };
+
+
+const handleChange = (event) => {
+  // setStr(e.target.value);
+  const {value} = event.target;
+  // fetch(`https://spott.p.rapidapi.com/places/autocomplete?limit=20&skip=0&q=+${str}&type=CITY`, {
+  //   method: 'GET',
+  //   headers: {
+  //     'X-RapidAPI-Key': '9e007d9903msh219bf5128f482f6p111a48jsn3651d0611401',
+  //     'X-RapidAPI-Host': 'spott.p.rapidapi.com'
+  //   }
+  // })
+  // .then(response => response.json())
+  // .then(response => {
+  //   setContainer(response);
+  //   console.log(response)})
+  // .catch(err => console.error(err));
+  fetch(`https://demo.dataverse.org/api/search?q=${value}`)
+    .then(response => response.json())
+    .then(response => {
+      setSearch(response.data.items)
     })
-      .then(response => response.json())
-      .then(response => {
-        setContainer(response);
-        console.log(response)})
-      .catch(err => console.error(err));
-  };
-
-
-const handleChange = (e) => {
-  setStr(e.target.value);
+    .catch(err => console.error(err));
 };
 
 
@@ -199,18 +218,20 @@ const handleChange = (e) => {
             <div className='searchBox'> 
                 <div> <FontAwesomeIcon className='location' icon={faLocationDot} /> </div> 
                 {/* onChange={(e) => setInputCity(e.target.value)} */}
-                <div> <input onChange={handleChange} value={str} className='input' type="text" placeholder="Search" ></input> </div> 
+                <div> <input onChange={handleChange} className='input' type="text" placeholder="Search"></input> </div> 
                 <div> <FontAwesomeIcon onClick={() => handleCity()} className='searchIcon' icon={faMagnifyingGlass} />  </div>
             </div>
       
-            {/* <div className="searchResult">
-              {container.map((item) => {
-                return (
-                  <p>{item.name}</p>
-                );
-              })}
-            </div> */}
-           
+          {search.length > 0 && 
+            <div className="searchResultBox">
+              {search.map((item,i) => {
+                <div key={i} className="searchResultItem">
+                  <span>{item.name}</span>
+                </div>
+              })
+              }
+            </div>
+            }
         
 
              <SevenDay />

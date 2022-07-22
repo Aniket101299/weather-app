@@ -29,6 +29,7 @@ body{
   border : 0
 }
 .inDiv{
+  z-index: 1;
   margin: auto;
   padding-top: 20px;
   background-color: white;
@@ -70,6 +71,26 @@ input[type="text"]{
   cursor: pointer;
   /* border: 1px solid red; */
 }
+.searchResultBox{
+  position: absolute;
+  z-index: 2;
+  border: 1px solid red;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  width: 309px;
+  height: 390px;
+  margin-left: 1.2%;
+  overflow: scroll;
+}
+.searchResultItem{
+  border-bottom: 1px solid #e6e6e6;
+  color: dodgerblue;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 5px;
+}
+
 
 /* .sevenDay{
   display: grid;

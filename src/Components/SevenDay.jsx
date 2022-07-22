@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { setSevenDay, setOnclick } from "../redux/actions/actions";
+import { setSevenDay, setOnclick, set12Hour } from "../redux/actions/actions";
 // import SetSevenDayData from "./SetSevenDayData";
 
 import "./SevenDay.css";
@@ -16,6 +16,7 @@ export default function SevenDay({data}) {
 
     let weather_key = "e03c2e0135a0e9ca1c601f3f18d309f2";
 
+    const [loading, setLoading] = useState(true);
     const [colour, setColour] = useState(["white","white","white","white","white","white","white","white"]);
     const [border, setBorder] = useState(["white","white","white","white","white","white","white","white"]);
   
@@ -24,14 +25,18 @@ export default function SevenDay({data}) {
     const clickRise = useSelector((state) => state.sunriseData.sunriseData);
     const clickSet = useSelector((state) => state.sunsetData.sunsetData);
     const allSeven = useSelector((state) => state.allSevenData.allSevenData);
+    const temp12Hour = useSelector((state) => state.Temp12Hour.TwelveHour);
 
-    console.log("seven", city);
+    console.log("TEMPERATURES", temp12Hour);
 
     const dispatch = useDispatch();
 
+    // if (loading) {
+    //   return <p>..Loading</p>;
+    // } 
+      
+    
 
-    
-    
     const fetchCityLatLon = async () => {
 
       try{
@@ -56,6 +61,8 @@ export default function SevenDay({data}) {
     }
 
 
+  
+
     const fetchSevenDay = async (lon, lat) => {
 
       try{
@@ -68,7 +75,7 @@ export default function SevenDay({data}) {
                 console.log("Error ", err);
               });
 
-        let data = response.data.daily;
+        let data = await response.data.daily;
         
           // 7 Day data
 
@@ -125,28 +132,79 @@ export default function SevenDay({data}) {
 
     }
 
-
-
-
+  
 
     useEffect(() => {
+      // user city weather
+      fetchCityLatLon();
+      console.log("hi inside useEffect");
 
-    // user city weather
-    
-    fetchCityLatLon();
+         if (temp12Hour) {
+          setLoading(false);
+        }
 
-    console.log("hi inside useEffect");
+      },[city, temp12Hour]);
 
-    },[city]);
+      // useEffect(() => {
+      //   if (temp12Hour) {
+      //     setLoading(false);
+      //   }
+      // }, [temp12Hour]);
 
 
+     let start;
 
-    const setData = (index, currentDayTemp, weather) => {
+     const setData = (index, currentDayTemp, weather) => {
       let rise = clickRise[index];
       let set = clickSet[index];
       let pressure = allSeven[index].pressure;
       let humidity = allSeven[index].humidity;
       console.log("index", index);
+
+      let temperatures;
+
+      if(index == 0) {
+        start = 0
+      } else if(index == 1) {
+        start = 6;
+      } else if(index == 2) {
+        start = 12;
+      } else if(index == 3) {
+        start = 18;
+      } else if(index == 4) {
+        start = 24;
+      } else if(index == 5) {
+        start = 30;
+      } else if(index == 6) {
+        start = 36;
+      } else {
+        start = 15;
+      }
+
+      console.log("START", start);
+
+      let limit = start + 12;
+
+      console.log("LIMIT", limit);
+
+      // if(loading) {
+      //   temperatures = [1,2,3,4,5,6,7,8,9,10,11,12];
+      // } 
+      
+      if(!loading) {
+        temperatures = [];
+        for(let i=start; i<limit; i++) {
+          temperatures.push(temp12Hour[i]);
+        }
+      }
+
+      
+      console.log("temperatures", temperatures);
+
+        // dispatch(set12Hour(temperatures));
+      
+      
+
       dispatch(setOnclick({
         "rise":rise, "set":set, "pressure":pressure, 
         "humidity":humidity, "currentDayTemp":currentDayTemp,
@@ -201,6 +259,7 @@ export default function SevenDay({data}) {
          </div> 
         </>
     )
+
 }
 
 
