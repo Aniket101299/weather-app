@@ -43,3 +43,9 @@
     margin-top: 2px;
     margin-bottom: 2px;
   }
+  .individual{
+    cursor: pointer;
+  }
+  .individual:hover{
+    background-color: aqua;
+  }

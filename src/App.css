@@ -74,11 +74,11 @@ input[type="text"]{
 .searchResultBox{
   position: absolute;
   z-index: 2;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  width: 309px;
+  width: 312px;
   height: 390px;
   margin-left: 1.2%;
   overflow: scroll;

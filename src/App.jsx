@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import './App.css';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import scriptLoader from 'react-async-script-loader';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCity, set12Hour, setToDay, setAllSevenData } from "./redux/actions/actions";
 import Chart from 'react-apexcharts';
@@ -38,11 +38,13 @@ console.log("Temp12Hour", temp12Hour);
 const [Inputcity, setInputCity] = useState("");
 const [str, setStr] = useState("");
 const [search, setSearch] = useState([]);
+const [dp, setDp] = useState("");
 
 
 const handleCity = () => {
   dispatch(setCity(Inputcity));
   console.log("clicked on symbol");
+  setDp("none");
 }
 
 
@@ -177,30 +179,59 @@ useEffect(() => {
   //     .catch(err => console.error(err));
   // };
 
+  const debounce = (func) => {
+    let timer;
+    return function (...args) {
+      const context = this;
+      if(timer) clearTimeout(timer);
+      timer =  setTimeout(() => {
+        timer = null;
+        func.apply(context, args);
+      }, 500);
+    }
+  } 
+
 
 const handleChange = (event) => {
-  // setStr(e.target.value);
+  
+  setDp("block");
+
   const {value} = event.target;
-  // fetch(`https://spott.p.rapidapi.com/places/autocomplete?limit=20&skip=0&q=+${str}&type=CITY`, {
-  //   method: 'GET',
-  //   headers: {
-  //     'X-RapidAPI-Key': '9e007d9903msh219bf5128f482f6p111a48jsn3651d0611401',
-  //     'X-RapidAPI-Host': 'spott.p.rapidapi.com'
-  //   }
-  // })
-  // .then(response => response.json())
-  // .then(response => {
-  //   setContainer(response);
-  //   console.log(response)})
-  // .catch(err => console.error(err));
-  fetch(`https://demo.dataverse.org/api/search?q=${value}`)
-    .then(response => response.json())
-    .then(response => {
-      setSearch(response.data.items)
-    })
-    .catch(err => console.error(err));
+
+  setInputCity(value);
+
+  fetch(`https://spott.p.rapidapi.com/places/autocomplete?limit=20&skip=0&q=+${value}&type=CITY`, {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '9e007d9903msh219bf5128f482f6p111a48jsn3651d0611401',
+      'X-RapidAPI-Host': 'spott.p.rapidapi.com'
+    }
+  })
+  .then(res => res.json())
+  .then(response => {
+    setSearch(response);
+    console.log("RESPONSE",response)})
+  .catch(err => console.error(err));
+
 };
 
+
+const optimisedVersion = useCallback(debounce(handleChange), []);
+
+
+const getCity = (e) => {
+  console.log("Clicked on city:" + e.target.innerText);
+  dispatch(setCity(e.target.innerText));
+  setDp("none");
+}
+
+const getPressCity = (e) => {
+  if(e.charCode == 13) {
+    console.log("clicked on Enter key");
+    dispatch(setCity(e.target.value));
+  }
+  setDp("none");
+}
 
 
 
@@ -218,18 +249,17 @@ const handleChange = (event) => {
             <div className='searchBox'> 
                 <div> <FontAwesomeIcon className='location' icon={faLocationDot} /> </div> 
                 {/* onChange={(e) => setInputCity(e.target.value)} */}
-                <div> <input onChange={handleChange} className='input' type="text" placeholder="Search"></input> </div> 
-                <div> <FontAwesomeIcon onClick={() => handleCity()} className='searchIcon' icon={faMagnifyingGlass} />  </div>
+                <div> <input onChange={optimisedVersion} onKeyPress={getPressCity} className='input' type="text" placeholder="Search"></input> </div> 
+                <div> <FontAwesomeIcon onClick={handleCity} className='searchIcon' icon={faMagnifyingGlass} />  </div>
             </div>
       
-          {search.length > 0 && 
-            <div className="searchResultBox">
-              {search.map((item,i) => {
-                <div key={i} className="searchResultItem">
+          {search?.length > 0 && 
+            <div className="searchResultBox" style={{display: dp}}>
+              {search?.map((item,i) => 
+                <div key={i} onClick={getCity} className="searchResultItem">
                   <span>{item.name}</span>
                 </div>
-              })
-              }
+              )}
             </div>
             }
         
