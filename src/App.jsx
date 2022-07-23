@@ -39,6 +39,7 @@ const [Inputcity, setInputCity] = useState("");
 const [str, setStr] = useState("");
 const [search, setSearch] = useState([]);
 const [dp, setDp] = useState("");
+const [changeBackground, setChangeBackground] = useState("black");
 
 
 const handleCity = () => {
@@ -235,12 +236,15 @@ const getPressCity = (e) => {
 
 
 
+
+
+
   return (
    
     <>
     {city == undefined ? ( <h2 className='permission'> Please allow your location to use Weather App </h2> ) 
     : (
-    <div className="App">
+    <div className="App" style={{backgroundColor: changeBackground}}>
       
       {/* left fiv */}
        <div className='info'>
@@ -295,7 +299,18 @@ const getPressCity = (e) => {
        <div className='map'>
           <iframe className='iframeBox' frameBorder={0} src={map_url} allowFullScreen>
           </iframe>
+      {/* change background color of screen */}
+      <h4 className="txt">Change Background</h4>
+      <div className="coloursDiv">
+            <span onClick={() => setChangeBackground("black")} className="color clr1"></span>
+            <span onClick={() => setChangeBackground("#9B0FDB")} className="color clr2"></span>
+            <span onClick={() => setChangeBackground("#ffea00")} className="color clr3"></span>
+            <span onClick={() => setChangeBackground("#04DB53")} className="color clr4"></span>
+            <span onClick={() => setChangeBackground("#0F68DB")} className="color clr5"></span>
+      </div>
        </div>
+
+
     </div>
 
      )}

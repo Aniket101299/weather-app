@@ -203,7 +203,41 @@ input[type="text"]{
   font-family: sans-serif;
   font-size: 12.4px;
 }
-
-
+.coloursDiv{
+  margin-left: 142px;
+  /* margin-top: 10px; */
+  display: flex;
+  height: 100px;
+  /* border: 2px solid red; */
+  
+}
+.color{
+  display: table-cell;
+  width: 30px;
+  height: 30px;
+  margin: 0 1px;
+  cursor: pointer;
+  border: 2px solid #FFF;
+}
+.clr1{
+  background-color: black;
+}
+.clr2{
+  background-color: #9B0FDB;
+}
+.clr3{
+  background-color: #ffea00;
+}
+.clr4{
+  background-color: #04DB53;
+}
+.clr5{
+  background-color: #0F68DB;
+}
+.txt{
+  color: white;
+  text-align: center;
+  margin-top: 35px;
+}
 
 

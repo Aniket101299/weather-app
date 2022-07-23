@@ -46,6 +46,4 @@
   .individual{
     cursor: pointer;
   }
-  .individual:hover{
-    background-color: aqua;
-  }
+  

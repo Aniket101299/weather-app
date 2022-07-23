@@ -64,3 +64,12 @@ export const setAllSevenData = (seven) => {
         payload: seven
     }
 };
+
+
+export const setChangableTemp = (temps) => {
+    return {
+        type: ActionTypes.SET_CHANGABLE_TEMP,
+        payload: temps
+    }
+};
+

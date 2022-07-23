@@ -90,3 +90,12 @@ export const allSevenReducer = (state = {}, {type, payload} ) => {
             return state;     
     }
 };
+
+export const changableTempReducer = (state = {}, {type, payload} ) => {
+    switch (type) {
+        case ActionTypes.SET_CHANGABLE_TEMP:
+            return {...state, changableTemp: payload};
+        default:
+            return state;     
+    }
+};
