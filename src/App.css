@@ -95,7 +95,7 @@ input[type="text"]{
   margin-left: 1.2%;
   overflow: scroll;
 }
-/* .searchResultBox::-webkit-scrollbar{
+.searchResultBox::-webkit-scrollbar{
   height: 0px;
   width: 6px;  
 }
@@ -103,11 +103,10 @@ input[type="text"]{
   background: white;
 }
 .searchResultBox::-webkit-scrollbar-thumb {
-  background-color: gray;    
-  border-radius: 40px;     
-} */
-/* color of the scroll thumb */
-/* roundness of the scroll thumb */  
+  background-color: gray;    /* color of the scroll thumb */
+  border-radius: 40px;         /* roundness of the scroll thumb */ 
+}
+
 .searchResultItem{
   border-bottom: 1px solid #e6e6e6;
   color: dodgerblue;

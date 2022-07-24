@@ -9,7 +9,7 @@
     height:135px;
     width: 313px;
   }
-/* .sevenDay::-webkit-scrollbar{
+.sevenDay::-webkit-scrollbar{
   height: 6px;
   width: 0px;  
 }
@@ -17,11 +17,11 @@
   background: white;
 }
 .sevenDay::-webkit-scrollbar-thumb {
-  background-color: gray;  
-  border-radius: 40px;       
-} */
-  /* color of the scroll thumb */
-/* roundness of the scroll thumb */
+  background-color: gray;    /* color of the scroll thumb */
+  border-radius: 40px;       /* roundness of the scroll thumb */
+}
+ 
+
 
 
   /* .sevenDay div{
