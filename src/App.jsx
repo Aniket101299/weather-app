@@ -338,7 +338,7 @@ const plainClick5 = () => {
         {/* live clock */}
         <Clock/>
           {/* change background colour of screen */}
-      {/* <p className="txt">Change Background</p>
+      <p className="txt">Change Background</p>
       <p className="dynamic">Dynamic backgrounds</p>
       <div className="coloursDiv">
             <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1500/?beauty,nature,water")} className="color clr1"></span>
@@ -354,7 +354,7 @@ const plainClick5 = () => {
             <span onClick={plainClick3} className="color clr33"></span>
             <span onClick={plainClick4} className="color clr44"></span>
             <span onClick={plainClick5} className="color clr55"></span>
-      </div> */}
+      </div>
       </div>
       </div>
 
