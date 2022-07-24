@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+
 body{
-  background-color: black;
+  background-color: black; 
+  overflow: hidden; 
 }
+
+  
 .permission{
   margin-top: 150px;
   text-align: center;
@@ -8,20 +13,22 @@ body{
 }
 .App{
   display: flex;
+  background-size: cover;
+  /* background: url("https://source.unsplash.com/800x1500/?nature,water"); */
 }
 .info{
   /* background-color: #8bd3e2; */
   width: 580px;
   height: 750px;
-  margin-left: 220px;
+  /* margin-left: 220px; */
   /* margin-top: 10px; */
-  padding-top: 9px;
+  padding-top: 12px;
 }
 .map{
   width: 470px;
   height: 430px;
-  margin-left: 10px;
-  margin-top: 140px;
+  margin-left: -20px;
+  margin-top: 145px;
 }
 .iframeBox{
   width: 470px;
@@ -71,6 +78,11 @@ input[type="text"]{
   cursor: pointer;
   /* border: 1px solid red; */
 }
+
+.locationInSearchResult{
+  height: 17px;
+ margin-left: 10px;
+}
 .searchResultBox{
   position: absolute;
   z-index: 2;
@@ -83,6 +95,19 @@ input[type="text"]{
   margin-left: 1.2%;
   overflow: scroll;
 }
+/* .searchResultBox::-webkit-scrollbar{
+  height: 0px;
+  width: 6px;  
+}
+.searchResultBox::-webkit-scrollbar-track {
+  background: white;
+}
+.searchResultBox::-webkit-scrollbar-thumb {
+  background-color: gray;    
+  border-radius: 40px;     
+} */
+/* color of the scroll thumb */
+/* roundness of the scroll thumb */  
 .searchResultItem{
   border-bottom: 1px solid #e6e6e6;
   color: dodgerblue;
@@ -161,6 +186,7 @@ input[type="text"]{
 .graphDiv{
   /* border: 1px solid yellow; */
   margin-top: -10px;
+  margin-left: 5px;
 }
 
 .pressureHumidity{
@@ -204,40 +230,143 @@ input[type="text"]{
   font-size: 12.4px;
 }
 .coloursDiv{
-  margin-left: 142px;
-  /* margin-top: 10px; */
   display: flex;
   height: 100px;
   /* border: 2px solid red; */
+  padding-left: 30px;
+}
+.coloursDiv2{
+  display: flex;
+  height: 100px;
+  /* border: 2px solid red; */
+  padding-left: 30px;
   
 }
 .color{
   display: table-cell;
-  width: 30px;
-  height: 30px;
+  width: 27px;
+  height: 27px;
   margin: 0 1px;
   cursor: pointer;
   border: 2px solid #FFF;
 }
-.clr1{
+.clr11{
   background-color: black;
 }
-.clr2{
+.clr22{
   background-color: #9B0FDB;
 }
-.clr3{
+.clr33{
   background-color: #ffea00;
 }
-.clr4{
+.clr44{
   background-color: #04DB53;
 }
-.clr5{
+.clr55{
   background-color: #0F68DB;
+}
+.clr1{
+  background: url("https://source.unsplash.com/800x1500/?nature,water");
+}
+.clr2{
+  background: url("https://source.unsplash.com/800x1500/?nature,water");
+}
+.clr3{
+  background: url("https://source.unsplash.com/800x1500/?nature,water");
+}
+.clr4{
+  background: url("https://source.unsplash.com/800x1500/?nature,water");
+}
+.clr5{
+  background: url("https://source.unsplash.com/800x1500/?nature,water");
 }
 .txt{
   color: white;
+  font-size: 18px;
+  font-weight: 600;
   text-align: center;
-  margin-top: 35px;
+  margin-top: 20px;
+  margin-bottom: 13px;
 }
-
-
+.timeArea{
+  display: flex;
+  /* border: 1px solid green; */
+  width: 257px;
+}
+.time{
+  color: white;
+  font-size: 40px;
+  font-weight: 100;
+  /* border: 1px solid red; */
+  width: 140px;
+}
+.am-pm{
+  font-size: 20px;
+  margin-left: 5px;
+}
+.place-container{
+  /* padding-top: 10px; */
+  color: white;
+  margin-left: 6px;
+  /* border: 1px solid red; */
+}
+.time-zone{
+  font-size: 15px;
+  font-weight: 100;
+}
+.country{
+  font-size: 8px;
+  font-weight: 700;
+  text-align: end;
+}
+.date{
+  color: white;
+  font-size: 20px;
+  font-weight: 100;
+}
+.mobileControl{
+  font-family: 'Poppins', sans-serif;
+  background: url('https://images.unsplash.com/photo-1621274403997-37aace184f49?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 223px;
+  height: 380px;
+  border: 4px solid black;
+  /* margin-left: 80px; 
+  margin-top: 163px; */
+  color: white;
+  padding: 15px 17px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.blackDesign{
+  /* border: 1px solid red; */
+  height: 18px;
+  width: 105px;
+  margin: auto;
+  margin-top: -19px;
+  background-color: black;
+  border-radius: 8px;
+}
+.whiteBorder{
+  border: 1px solid white;
+  width: 265px;
+  height: 419px;
+  margin-left: 80px; 
+  margin-top: 151px;
+  border-radius: 15px;
+}
+.dynamic{
+  margin-top: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+.plain{
+  margin-top: -30px;
+  font-size: 16px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}

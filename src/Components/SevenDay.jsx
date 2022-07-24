@@ -44,7 +44,7 @@ export default function SevenDay({ data }) {
   const allSeven = useSelector((state) => state.allSevenData.allSevenData);
   const temp12Hour = useSelector((state) => state.Temp12Hour.TwelveHour);
 
-  console.log("TEMPERATURES", temp12Hour);
+  // console.log("TEMPERATURES", temp12Hour);
 
   const dispatch = useDispatch();
 
@@ -57,7 +57,7 @@ export default function SevenDay({ data }) {
   useEffect(() => {
     // user city weather
     fetchCityLatLon();
-    console.log("hi inside useEffect");
+    // console.log("hi inside useEffect");
   }, [city]);
 
  
@@ -73,7 +73,7 @@ export default function SevenDay({ data }) {
 
       fetchSevenDay(longitude, lattitude);
 
-      console.log("singleDay", response.data.coord);
+      // console.log("singleDay", response.data.coord);
     } catch (err) {
       console.log("Error", err);
     }
@@ -138,7 +138,7 @@ export default function SevenDay({ data }) {
 
       dispatch(setSevenDay(sevenDay_Data));
 
-      console.log("Seven", response.data.daily);
+      // console.log("Seven", response.data.daily);
     } catch (err) {
       console.log("Error", err);
     }
@@ -157,7 +157,7 @@ export default function SevenDay({ data }) {
     let set = clickSet[index];
     let pressure = allSeven[index].pressure;
     let humidity = allSeven[index].humidity;
-    console.log("index", index);
+    // console.log("index", index);
 
     let temperatures;
 
@@ -179,11 +179,11 @@ export default function SevenDay({ data }) {
       start = 15;
     }
 
-    console.log("START", start);
+    // console.log("START", start);
 
     let limit = start + 12;
 
-    console.log("LIMIT", limit);
+    // console.log("LIMIT", limit);
 
     if (temp12Hour?.length > 0 && true) {
       temperatures = [];
@@ -200,7 +200,7 @@ export default function SevenDay({ data }) {
       dispatch(setChangableTemp(temperatures));
     }
 
-    console.log("temperatures", temperatures);
+    // console.log("temperatures", temperatures);
 
     dispatch(
       setOnclick({
@@ -281,7 +281,8 @@ export default function SevenDay({ data }) {
               onClick={() => setData(i, item.currentDayTemp, item.weather)}
               style={{
                 backgroundColor: colour[i],
-                border: `3px solid ${border[i]}`,
+                border:`3px solid ${border[i]}`,
+                borderRadius:"7px",
               }}
             >
               <p>{item.name}</p>

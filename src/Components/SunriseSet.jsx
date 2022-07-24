@@ -9,7 +9,7 @@ export default function SunriseSunset() {
   let weather_key = "e03c2e0135a0e9ca1c601f3f18d309f2";
   const city = useSelector((state) => state.city.city);
   const clickData = useSelector((state) => state.onclickData.onclickData);
-  console.log("Suncity",city);
+  // console.log("Suncity",city);
 
   
     const [Sunrise, setSunrise] = useState("");
@@ -26,7 +26,7 @@ export default function SunriseSunset() {
           });
 
 
-          console.log("DATA", response.data.sys);
+          // console.log("DATA", response.data.sys);
 
 //           let unix = 1507473344;
 // let date = new Date(unix*1000);
@@ -38,8 +38,8 @@ export default function SunriseSunset() {
           let x = sunrise.toString();
           let y = sunset.toString();
 
-        console.log("NOGoogleRise", x);
-        console.log("NOGoogleSet", y);
+        // console.log("NOGoogleRise", x);
+        // console.log("NOGoogleSet", y);
 
           let rise = "";
           let set = "";
@@ -83,8 +83,8 @@ export default function SunriseSunset() {
           setSunset(set);
           
       
-          console.log("rise",rise);
-          console.log("set",set);
+          // console.log("rise",rise);
+          // console.log("set",set);
 
         } catch(err) {
           console.log("Error", err);
@@ -105,13 +105,13 @@ const fetch_SunData = async (lat, lon) => {
         .catch((err) => {
           console.log("Error ", err);
         });
-console.log("ONEDAYSUN", response.data.results);
+// console.log("ONEDAYSUN", response.data.results);
     const sunrise = new Date(response.data.results.sunrise);
     const sunset = new Date(response.data.results.sunset);
     let x = sunrise.toString();
     let y = sunset.toString();
-    console.log("GoogleRise", x);
-    console.log("GoogleSet", y);
+    // console.log("GoogleRise", x);
+    // console.log("GoogleSet", y);
     let rise = "";
     let set = "";
     for(let i=16; i<21; i++) {
@@ -154,8 +154,8 @@ console.log("ONEDAYSUN", response.data.results);
     setSunset(set);
     
 
-    console.log("rise",rise);
-    console.log("set",set);
+    // console.log("rise",rise);
+    // console.log("set",set);
 
   } catch(err) {
     console.log("Error", err);

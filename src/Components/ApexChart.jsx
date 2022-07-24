@@ -24,7 +24,7 @@ const ApexChartTemp = () => {
   if (loading) {
     return <p>..Loading</p>;
   }
-  console.log("ApexChartTemp", temp12Hour);
+  // console.log("ApexChartTemp", temp12Hour);
 
   //  const [temperature, setTemperature] = useState([]);
 

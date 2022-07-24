@@ -12,7 +12,7 @@ export default function TempAndImg() {
 
   const sevenData = useSelector((state) => state.sevenDayData.sevenDayData[0]);
   const clickData = useSelector((state) => state.onclickData.onclickData);
-console.log("tempWea", sevenData);
+// console.log("tempWea", sevenData);
 
 // clickData == undefined ?     : `${clickData}`
 

@@ -21,6 +21,7 @@ import SunriseSetGraph from './Components/SunriseSetGraph';
 import SevenDay from './Components/SevenDay';
 import TempAndImg from './Components/TempAndImg';
 import PressureAndHum from './Components/PressureAndHum';
+import Clock from "./Components/Clock";
 
  
 function App() {
@@ -32,14 +33,16 @@ let google_map_key = "AIzaSyB_iyI-ZoAiV9j3HaHH58AEo62mXxOhL5Q";
 const city = useSelector((state) => state.city.city);
 const temp12Hour = useSelector((state) => state.Temp12Hour.TwelveHour);
 const dispatch = useDispatch();
-console.log("IpCity", city);
-console.log("Temp12Hour", temp12Hour);
+// console.log("IpCity", city);
+// console.log("Temp12Hour", temp12Hour);
 
 const [Inputcity, setInputCity] = useState("");
 const [str, setStr] = useState("");
 const [search, setSearch] = useState([]);
 const [dp, setDp] = useState("");
 const [changeBackground, setChangeBackground] = useState("black");
+const [plainBackground, setPlainBackground] = useState("");
+
 
 
 const handleCity = () => {
@@ -108,7 +111,7 @@ useEffect(() => {
 
   
    const fetchLonLat = async () => {
-    console.log("In fetchLatLon");
+    // console.log("In fetchLatLon");
     if(city !== undefined) {
       try{
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather_key}&units=metric`;
@@ -211,7 +214,8 @@ const handleChange = (event) => {
   .then(res => res.json())
   .then(response => {
     setSearch(response);
-    console.log("RESPONSE",response)})
+    // console.log("RESPONSE",response)
+  })
   .catch(err => console.error(err));
 
 };
@@ -221,21 +225,44 @@ const optimisedVersion = useCallback(debounce(handleChange), []);
 
 
 const getCity = (e) => {
-  console.log("Clicked on city:" + e.target.innerText);
+  // console.log("Clicked on city:" + e.target.innerText);
   dispatch(setCity(e.target.innerText));
   setDp("none");
 }
 
 const getPressCity = (e) => {
   if(e.charCode == 13) {
-    console.log("clicked on Enter key");
+    // console.log("clicked on Enter key");
     dispatch(setCity(e.target.value));
   }
   setDp("none");
 }
 
+const plainClick1 = () => {
+  setChangeBackground("");
+  setPlainBackground("black");
+} 
 
+const plainClick2 = () => {
+  setChangeBackground("");
+  setPlainBackground("#9B0FDB")
+}
 
+const plainClick3 = () => {
+  setChangeBackground("");
+  setPlainBackground("#ffea00")
+}
+
+const plainClick4 = () => {
+  setChangeBackground("");
+  setPlainBackground("#04DB53")
+}
+
+const plainClick5 = () => {
+  setChangeBackground("");
+  setPlainBackground("#0F68DB")
+}
+ 
 
 
 
@@ -244,7 +271,7 @@ const getPressCity = (e) => {
     <>
     {city == undefined ? ( <h2 className='permission'> Please allow your location to use Weather App </h2> ) 
     : (
-    <div className="App" style={{backgroundColor: changeBackground}}>
+    <div className="App" style={{background: `url(${changeBackground})`, backgroundColor: plainBackground}}>
       
       {/* left fiv */}
        <div className='info'>
@@ -261,7 +288,7 @@ const getPressCity = (e) => {
             <div className="searchResultBox" style={{display: dp}}>
               {search?.map((item,i) => 
                 <div key={i} onClick={getCity} className="searchResultItem">
-                  <span>{item.name}</span>
+                  <span>{item.name}<FontAwesomeIcon className='locationInSearchResult' icon={faLocationDot} /> </span>
                 </div>
               )}
             </div>
@@ -297,19 +324,41 @@ const getPressCity = (e) => {
 
        {/* right div */}
        <div className='map'>
+
           <iframe className='iframeBox' frameBorder={0} src={map_url} allowFullScreen>
           </iframe>
-      {/* change background color of screen */}
-      <h4 className="txt">Change Background</h4>
-      <div className="coloursDiv">
-            <span onClick={() => setChangeBackground("black")} className="color clr1"></span>
-            <span onClick={() => setChangeBackground("#9B0FDB")} className="color clr2"></span>
-            <span onClick={() => setChangeBackground("#ffea00")} className="color clr3"></span>
-            <span onClick={() => setChangeBackground("#04DB53")} className="color clr4"></span>
-            <span onClick={() => setChangeBackground("#0F68DB")} className="color clr5"></span>
-      </div>
+
        </div>
 
+
+      {/* control mobile */}
+      <div className="whiteBorder">
+      <div className="mobileControl">
+        <div className="blackDesign"></div>
+        {/* live clock */}
+        <Clock/>
+          {/* change background colour of screen */}
+      {/* <p className="txt">Change Background</p>
+      <p className="dynamic">Dynamic backgrounds</p>
+      <div className="coloursDiv">
+            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1500/?beauty,nature,water")} className="color clr1"></span>
+            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x900/?ice,nature,water")} className="color clr2"></span>
+            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1300/?rock,mountains,beach,desert,weather")} className="color clr3"></span>
+            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1400/?himalaya,forest,waterfall,clouds")} className="color clr4"></span>
+            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1200/?sea,nature,water,trees")} className="color clr5"></span>
+      </div>
+      <p className="plain">Plain backgrounds</p>
+      <div className="coloursDiv2">
+            <span onClick={plainClick1} className="color clr11"></span>
+            <span onClick={plainClick2} className="color clr22"></span>
+            <span onClick={plainClick3} className="color clr33"></span>
+            <span onClick={plainClick4} className="color clr44"></span>
+            <span onClick={plainClick5} className="color clr55"></span>
+      </div> */}
+      </div>
+      </div>
+
+     
 
     </div>
 

@@ -12,8 +12,8 @@ const SunriseSetGraph = () => {
 
   const riseData = useSelector((state) => state.sunriseData.sunriseData);
   const setData = useSelector((state) => state.sunsetData.sunsetData);
-  console.log("RISEDATA", riseData);
-  console.log("SETDATA", setData);
+  // console.log("RISEDATA", riseData);
+  // console.log("SETDATA", setData);
   const dispatch = useDispatch();
 
   let arr = [];
@@ -152,7 +152,7 @@ const SunriseSetGraph = () => {
 
           getSunData(lattitude, longitude);
 
-          console.log("dates", dates);
+          // console.log("dates", dates);
 
           // console.log( "sunriseData", sunriseData);
           dispatch(setDates(dates));
@@ -265,8 +265,8 @@ const SunriseSetGraph = () => {
   let seven = JSON.parse(localStorage.getItem("date6"));
   let eight = JSON.parse(localStorage.getItem("date7"));
 
-  let riseSunData = JSON.parse(localStorage.getItem("riseData"));
-  console.log("RISEDSUNDD", riseSunData);
+  // let riseSunData = JSON.parse(localStorage.getItem("riseData"));
+  // console.log("RISEDSUNDD", riseSunData);
 
   const sunData = () => {
     if (riseData === undefined && setData === undefined) {

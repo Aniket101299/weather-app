@@ -20,7 +20,7 @@ const fetchCityData = async () => {
         .catch((err) => {
           console.log("Error ", err);
         });
-        console.log("PressureAndHum", response);
+        // console.log("PressureAndHum", response);
         setData(response.data.main);
         
   } catch(err) {
