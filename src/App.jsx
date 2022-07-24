@@ -14,6 +14,7 @@ import { faLocationDot, faMagnifyingGlass } from '@fortawesome/free-solid-svg-ic
 
 import axios from "axios";
 
+import Loader from "./Components/Loader";
 import ApexChartTemp from './Components/ApexChart';
 
 import SunriseSunset from './Components/SunriseSet';
@@ -42,6 +43,17 @@ const [search, setSearch] = useState([]);
 const [dp, setDp] = useState("");
 const [changeBackground, setChangeBackground] = useState("black");
 const [plainBackground, setPlainBackground] = useState("");
+const [loaded, setLoaded] = useState(false);
+
+//   the useEffect will run on the first rendering of the App component
+//   after two seconds (about how long it takes for the data to load)
+//   the loaded state will become true
+  useEffect(() => {
+    let timer = setTimeout(() => setLoaded(true), 7000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
 
 
@@ -266,13 +278,15 @@ const plainClick5 = () => {
 
 
 
+
   return (
    
     <>
+
     {city == undefined ? ( <h2 className='permission'> Please allow your location to use Weather App </h2> ) 
-    : (
+    : 
+      !loaded && city!== undefined ?  ( <Loader /> ) : (
     <div className="App" style={{background: `url(${changeBackground})`, backgroundColor: plainBackground}}>
-      
       {/* left fiv */}
        <div className='info'>
 
@@ -361,8 +375,8 @@ const plainClick5 = () => {
      
 
     </div>
-
-     )}
+    )
+     }
 
 
     </>

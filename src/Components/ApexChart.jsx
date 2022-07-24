@@ -54,6 +54,7 @@ const ApexChartTemp = () => {
         text: "Hourly Temperature Movements",
         align: "left",
       },
+     
     },
     // series: [
     //   {
