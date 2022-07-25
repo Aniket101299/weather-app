@@ -3,91 +3,113 @@
 <table>
 <tr>
 <td>
-MYTHERESA - THE FINEST EDIT IN LUXURY FASHION
 
-Mytheresa is the finest edit in luxury fashion for women, men and kids. We have over 200 of the best international designers, 600 new arrivals each week, fast and reliable delivery, excellent customer service, utmost security and data protection, and free returns and exchanges within 30 days.
+In this weather application user can able to search weather condition for any city from the world along with the location of that particular city in the google map.
 
-Mytheresa is an industry leader in the world of online luxury fashion and retail. For over 30 years, the highly successful Mytheresa store cemented its status in Munich as a pillar of style and taste. In 2006 it widened its customer base globally by launching a small e-commerce extension. Today, over 860 employees work together to create an unforgettable online shopping experience. What makes Mytheresa so unique? An exceptional curation of women's, men's and kids' products from over 200 of the world’s most covetable fashion brands; exclusive designer collaborations; an outstanding customer service team made up of native speakers in multiple languages; and fast and reliable delivery to more than 133 countries across the globe.
+Weather condition includes :
+- Temperature (min, max, avg) of the searched city.
+- Weather of that city like clear, clouds, rain, haze etc.
+- Hourly temperature graph of searched city.
+- Pressure and humidity of that city.
+- Sunrise and sunset of that city.
+- Sunrise and sunset graph.
+    
+User can see fully dynamic weather condition data for 8 days at one place.
+    
+Added hourly temperature graph for better visualisation.
+    
+Sunrise-sunset graph also there for better visualisation. 
+    
+Used Google map to show location of the searched city.
+    
+Live time with day and date using Asia/Kolkata time zone.
+    
+Cool feature of dynamic and plain backgrounds added to improve the user experience for my application.    
 
 </td>
 </tr>
 </table>
 
-# MYTHERESA Clone
+# Weather App
 
-Deployment Link :- https://mytheresa-clone.vercel.app/
+Deployment Link :- https://weather-app-aniket101299.vercel.app/
 
 ## Built with Tech Stacks:
 
 - HTML 5
 - CSS
 - Advanced JavaScript (ES6)
-- NodeJS
-- ExpressJS
-- MongoDB
-- Mongoose
+- React
+- Redux
 
 ## Features:
 
-- User login/Signup
-- Attractive home page
-- Products Sorting functionality
-- Products Filtering functionality
-- Increase/decrease quantity of items in cart
-- Payment
+- User can able to see weather condition of any city from the world.
+- Used debouncing for search functionality.
+- Integrate Google map to show locaion of the searched city.
+- Fully dynamic 8 days weather condition data at one place.
+- Hourly temperature & sunrise-sunset graphs for easy & better visualisation. 
+- Live clock along with day and date.
+- Cool feature of dynamic and plain backgrounds.
+- Attractive webpage.
 
 ## About Website:
 
-## Home Page
+## Search bar
 
-This is the home page of website from where user can explore different types of products categories. From home page itself user can Sign In or Login to website, user can visit cart page.
+This is the search bar of website from here user can search any city from the world that user want to search to see weather condition of that city.
 
-![Home_page](https://user-images.githubusercontent.com/91543059/159116517-276e5fe9-99f3-4492-ace4-5cdacea78e5a.png)
-
-## Product Categories
-
-* Men Section
-
-![Men_page](https://user-images.githubusercontent.com/91543059/159116637-84278832-e720-4816-9469-26636566861c.png)
-
-* Mens Products Page
-
-![Home_page](https://user-images.githubusercontent.com/91543059/159117397-50bdf821-0e2b-41ea-8a47-f71b7b9cb6aa.png)
-
-* Mens Product Detail Page
-
-![Home_page](https://user-images.githubusercontent.com/91543059/159117513-bd48c59e-89de-4462-a85d-bf2633d7f185.png)
-
-* Kids Section
-
-![Home_page](https://user-images.githubusercontent.com/91543059/159117977-75beb5de-4dec-49ad-99f9-b0189140f128.png)
-
-* Kids Products Page
-
-![Home_page](https://user-images.githubusercontent.com/91543059/159116944-b4c555ef-4615-4e01-a7ff-8b3b36553e2a.png)
-
-* Kids Product Detail Page
-
-![Home_page](https://user-images.githubusercontent.com/91543059/159118029-6e1cc384-7201-406d-bc3c-35d94c3126ef.png)
+![search bar](https://user-images.githubusercontent.com/91543059/180759733-ae156002-cee1-4377-bf7d-4c6f3ac1e775.png)
 
 
-## Sign up & Login Page
 
-From this page by signing up user can create his/her account for login to website.
+## Suggestions of cities
 
-![Sign_in_Login](https://user-images.githubusercontent.com/91543059/159116961-a3543b83-7904-441f-b9c1-3e51fef76060.png)
+This is the suggestion box here user can find city name that he/she wanted to search. I used debouncing here.
 
-## Cart Page
+![suggestion box](https://user-images.githubusercontent.com/91543059/180759871-53aea304-4815-4ce8-a127-02f1ade49222.png)
 
-This is the cart page where user can see the products that was added in the cart. Here user can increase or decrease the quantity of product, remove the product from cart and from here user can go to payment page or back to home page.
 
-![Cart](https://user-images.githubusercontent.com/91543059/159118041-22dbea80-1b1f-4fa9-bb6b-31dd7b6528c0.png)
 
-## Payment Page
+## 8 days data
 
-This is the payment page of the website from here user can pay the amount and order the products. User can make payment of total amount shown in cart.
+This is the 8 days data with minimum and maximum temperature along with weather of that day.
 
-![Payment](https://user-images.githubusercontent.com/91543059/159118069-91efdb19-d94d-4c62-94f2-837d0f3b7557.png)
+![8 days](https://user-images.githubusercontent.com/91543059/180759908-39398fa6-704b-4589-b9c6-663b8bd8a69e.png)
+
+
+
+## Detail data of that day
+
+By just clicking on any day user can see the weather condition data of that particular day in the below section.
+
+![8 days details](https://user-images.githubusercontent.com/91543059/180759931-6096e3b7-9030-46fe-9db0-8b7b3b9b3aee.png)
+
+
+
+## Dynamic backgrounds
+
+Just by clicking any of the 5 options here user can see dynamic backgrounds.
+
+![dynamic bg](https://user-images.githubusercontent.com/91543059/180759956-3163b05b-5ffe-488c-9e23-df1c226976c7.png)
+
+
+
+## Plain backgrounds
+
+Just by clicking any of the 5 options here user can see plain backgrounds.
+
+![plain bg](https://user-images.githubusercontent.com/91543059/180760000-955f1fe1-6090-4d4f-bd87-52d15b7a8259.png)
+
+
+
+## Live Clock
+
+Here user can see live time along with day, date and time zone.
+
+![live time](https://user-images.githubusercontent.com/91543059/180760050-8e4efd3f-9fc5-4641-8b84-210c49303be6.png)
+
+
 
 ## [Getting Started]
 
