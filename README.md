@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<table>
+<tr>
+<td>
+MYTHERESA - THE FINEST EDIT IN LUXURY FASHION
 
-## Available Scripts
+Mytheresa is the finest edit in luxury fashion for women, men and kids. We have over 200 of the best international designers, 600 new arrivals each week, fast and reliable delivery, excellent customer service, utmost security and data protection, and free returns and exchanges within 30 days.
 
-In the project directory, you can run:
+Mytheresa is an industry leader in the world of online luxury fashion and retail. For over 30 years, the highly successful Mytheresa store cemented its status in Munich as a pillar of style and taste. In 2006 it widened its customer base globally by launching a small e-commerce extension. Today, over 860 employees work together to create an unforgettable online shopping experience. What makes Mytheresa so unique? An exceptional curation of women's, men's and kids' products from over 200 of the world’s most covetable fashion brands; exclusive designer collaborations; an outstanding customer service team made up of native speakers in multiple languages; and fast and reliable delivery to more than 133 countries across the globe.
 
-### `npm start`
+</td>
+</tr>
+</table>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# MYTHERESA Clone
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Deployment Link :- https://mytheresa-clone.vercel.app/
 
-### `npm test`
+## Built with Tech Stacks:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- HTML 5
+- CSS
+- Advanced JavaScript (ES6)
+- NodeJS
+- ExpressJS
+- MongoDB
+- Mongoose
 
-### `npm run build`
+## Features:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- User login/Signup
+- Attractive home page
+- Products Sorting functionality
+- Products Filtering functionality
+- Increase/decrease quantity of items in cart
+- Payment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## About Website:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Home Page
 
-### `npm run eject`
+This is the home page of website from where user can explore different types of products categories. From home page itself user can Sign In or Login to website, user can visit cart page.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Home_page](https://user-images.githubusercontent.com/91543059/159116517-276e5fe9-99f3-4492-ace4-5cdacea78e5a.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Product Categories
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* Men Section
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Men_page](https://user-images.githubusercontent.com/91543059/159116637-84278832-e720-4816-9469-26636566861c.png)
 
-## Learn More
+* Mens Products Page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Home_page](https://user-images.githubusercontent.com/91543059/159117397-50bdf821-0e2b-41ea-8a47-f71b7b9cb6aa.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Mens Product Detail Page
 
-### Code Splitting
+![Home_page](https://user-images.githubusercontent.com/91543059/159117513-bd48c59e-89de-4462-a85d-bf2633d7f185.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* Kids Section
 
-### Analyzing the Bundle Size
+![Home_page](https://user-images.githubusercontent.com/91543059/159117977-75beb5de-4dec-49ad-99f9-b0189140f128.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* Kids Products Page
 
-### Making a Progressive Web App
+![Home_page](https://user-images.githubusercontent.com/91543059/159116944-b4c555ef-4615-4e01-a7ff-8b3b36553e2a.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* Kids Product Detail Page
 
-### Advanced Configuration
+![Home_page](https://user-images.githubusercontent.com/91543059/159118029-6e1cc384-7201-406d-bc3c-35d94c3126ef.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+## Sign up & Login Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+From this page by signing up user can create his/her account for login to website.
 
-### `npm run build` fails to minify
+![Sign_in_Login](https://user-images.githubusercontent.com/91543059/159116961-a3543b83-7904-441f-b9c1-3e51fef76060.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Cart Page
+
+This is the cart page where user can see the products that was added in the cart. Here user can increase or decrease the quantity of product, remove the product from cart and from here user can go to payment page or back to home page.
+
+![Cart](https://user-images.githubusercontent.com/91543059/159118041-22dbea80-1b1f-4fa9-bb6b-31dd7b6528c0.png)
+
+## Payment Page
+
+This is the payment page of the website from here user can pay the amount and order the products. User can make payment of total amount shown in cart.
+
+![Payment](https://user-images.githubusercontent.com/91543059/159118069-91efdb19-d94d-4c62-94f2-837d0f3b7557.png)
+
+## [Getting Started]
+
+### Execution..
+
+Want to run in your local Machine? Great!
+
+To run, follow these steps:
+
+-  Clone the repository
+    
+    https://github.com/Aniket101299/Mytheresa-Clone.git
+  
+- Open the code in your VS code.
+- Initialize the server npm run server in the terminal.
+- Run port number on the browser http://localhost:port/index
+- Then you can Navigate through other pages from Home page.
+
+## Creator
+
+- [@Aniket Darekar]()
