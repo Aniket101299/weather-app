@@ -127,12 +127,12 @@ To run, follow these steps:
 
 -  Clone the repository
     
-    https://github.com/Aniket101299/Mytheresa-Clone.git
+    https://github.com/Aniket101299/weather-app.git
   
 - Open the code in your VS code.
 - Initialize the server npm run server in the terminal.
 - Run port number on the browser http://localhost:port/index
-- Then you can Navigate through other pages from Home page.
+- Then you can start using application.
 
 ## Creator
 
