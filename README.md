@@ -92,6 +92,11 @@ By just clicking on any day user can see the weather condition data of that part
 Just by clicking any of the 5 options here user can see dynamic backgrounds.
 
 ![dynamic bg](https://user-images.githubusercontent.com/91543059/180759956-3163b05b-5ffe-488c-9e23-df1c226976c7.png)
+![Screenshot (6030)](https://user-images.githubusercontent.com/91543059/180772994-4ba44adb-35c1-4f02-9993-68e4430b34ba.png)
+![Screenshot (6031)](https://user-images.githubusercontent.com/91543059/180773206-75ccb708-3f8d-44f9-bd7d-c9097bbaaf3e.png)
+![Screenshot (6032)](https://user-images.githubusercontent.com/91543059/180773253-917806c5-aef7-4b65-b6bf-69b502f491a9.png)
+![Screenshot (6033)](https://user-images.githubusercontent.com/91543059/180773305-995f4adf-ead8-4dc9-936f-6133c3a0dc74.png)
+![Screenshot (6034)](https://user-images.githubusercontent.com/91543059/180773359-4ac32735-0058-434e-8dfe-52a424094430.png)
 
 
 
@@ -100,6 +105,7 @@ Just by clicking any of the 5 options here user can see dynamic backgrounds.
 Just by clicking any of the 5 options here user can see plain backgrounds.
 
 ![plain bg](https://user-images.githubusercontent.com/91543059/180760000-955f1fe1-6090-4d4f-bd87-52d15b7a8259.png)
+![Screenshot (6036)](https://user-images.githubusercontent.com/91543059/180773407-da8985a5-f3c3-4440-a80e-cbf076bc48ec.png)
 
 
 
