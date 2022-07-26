@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<table>
+<tr>
+<td>
 
-## Available Scripts
+In this weather application user can able to search weather condition for any city from the world along with the location of that particular city in the google map.
 
-In the project directory, you can run:
+Weather condition includes :
+- Temperature (min, max, avg) of the searched city.
+- Weather of that city like clear, clouds, rain, haze etc.
+- Hourly temperature graph of searched city.
+- Pressure and humidity of that city.
+- Sunrise and sunset of that city.
+- Sunrise and sunset graph.
+    
+User can see fully dynamic weather condition data for 8 days at one place.
+    
+Added hourly temperature graph for better visualisation.
+    
+Sunrise-sunset graph also there for better visualisation. 
+    
+Used Google map to show location of the searched city.
+    
+Live time with day and date using Asia/Kolkata time zone.
+    
+Cool feature of dynamic and plain backgrounds added to improve the user experience for my application.    
 
-### `npm start`
+</td>
+</tr>
+</table>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Weather App
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Deployment Link :- https://weather-app-aniket101299.vercel.app/
 
-### `npm test`
+## Built with Tech Stacks:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- HTML 5
+- CSS
+- Advanced JavaScript (ES6)
+- React
+- Redux
 
-### `npm run build`
+## Features:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- User can able to see weather condition of any city from the world.
+- Used debouncing for search functionality.
+- Integrate Google map to show locaion of the searched city.
+- Fully dynamic 8 days weather condition data at one place.
+- Hourly temperature & sunrise-sunset graphs for easy & better visualisation. 
+- Live clock along with day and date.
+- Cool feature of dynamic and plain backgrounds.
+- Attractive webpage.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## About Website:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Search bar
 
-### `npm run eject`
+This is the search bar of website from here user can search any city from the world that user want to search to see weather condition of that city.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![search bar](https://user-images.githubusercontent.com/91543059/180759733-ae156002-cee1-4377-bf7d-4c6f3ac1e775.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Suggestions of cities
 
-## Learn More
+This is the suggestion box here user can find city name that he/she wanted to search. I used debouncing here.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![suggestion box](https://user-images.githubusercontent.com/91543059/180759871-53aea304-4815-4ce8-a127-02f1ade49222.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 8 days data
 
-### Analyzing the Bundle Size
+This is the 8 days data with minimum and maximum temperature along with weather of that day.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![8 days](https://user-images.githubusercontent.com/91543059/180759908-39398fa6-704b-4589-b9c6-663b8bd8a69e.png)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## Detail data of that day
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+By just clicking on any day user can see the weather condition data of that particular day in the below section.
 
-### Deployment
+![8 days details](https://user-images.githubusercontent.com/91543059/180759931-6096e3b7-9030-46fe-9db0-8b7b3b9b3aee.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Dynamic backgrounds
+
+Just by clicking any of the 5 options here user can see dynamic backgrounds.
+
+![dynamic bg](https://user-images.githubusercontent.com/91543059/180759956-3163b05b-5ffe-488c-9e23-df1c226976c7.png)
+![Screenshot (6030)](https://user-images.githubusercontent.com/91543059/180772994-4ba44adb-35c1-4f02-9993-68e4430b34ba.png)
+![Screenshot (6031)](https://user-images.githubusercontent.com/91543059/180773206-75ccb708-3f8d-44f9-bd7d-c9097bbaaf3e.png)
+![Screenshot (6032)](https://user-images.githubusercontent.com/91543059/180773253-917806c5-aef7-4b65-b6bf-69b502f491a9.png)
+![Screenshot (6033)](https://user-images.githubusercontent.com/91543059/180773305-995f4adf-ead8-4dc9-936f-6133c3a0dc74.png)
+![Screenshot (6034)](https://user-images.githubusercontent.com/91543059/180773359-4ac32735-0058-434e-8dfe-52a424094430.png)
+
+
+
+## Plain backgrounds
+
+Just by clicking any of the 5 options here user can see plain backgrounds.
+
+![plain bg](https://user-images.githubusercontent.com/91543059/180760000-955f1fe1-6090-4d4f-bd87-52d15b7a8259.png)
+![Screenshot (6036)](https://user-images.githubusercontent.com/91543059/180773407-da8985a5-f3c3-4440-a80e-cbf076bc48ec.png)
+
+
+
+## Live Clock
+
+Here user can see live time along with day, date and time zone.
+
+![live time](https://user-images.githubusercontent.com/91543059/180760050-8e4efd3f-9fc5-4641-8b84-210c49303be6.png)
+
+
+
+## [Getting Started]
+
+### Execution..
+
+Want to run in your local Machine? Great!
+
+To run, follow these steps:
+
+-  Clone the repository
+    
+    https://github.com/Aniket101299/weather-app.git
+  
+- Open the code in your VS code.
+- Initialize the server npm run server in the terminal.
+- Run port number on the browser http://localhost:port/index
+- Then you can start using application.
+
+## Creator
+
+- [@Aniket Darekar]()
