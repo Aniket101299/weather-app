@@ -3,7 +3,6 @@ import { GooeyCircleLoader } from "react-loaders-kit";
 import Typed from "react-typed";
 
 function Loader() {
-
   const loaderProps = {
     loading: true,
     size: 275,
@@ -13,13 +12,13 @@ function Loader() {
 
   return (
     <div className="loader">
-        <GooeyCircleLoader {...loaderProps} />
-        <Typed
-          className="loader-text"
-          strings={["Loading..."]}
-          typeSpeed={60}
-          backSpeed={0}
-        />
+      <GooeyCircleLoader {...loaderProps} />
+      <Typed
+        className="loader-text"
+        strings={["Loading..."]}
+        typeSpeed={60}
+        backSpeed={0}
+      />
     </div>
   );
 }

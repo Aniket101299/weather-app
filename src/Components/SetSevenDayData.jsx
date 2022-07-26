@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux"; 
+import { useSelector, useDispatch } from "react-redux";
 import { setOnclick } from "../redux/actions/actions";
 import "./SetSevenDayData.css";
 
@@ -9,9 +9,7 @@ import cloud from "../images/clouds.png";
 import clear from "../images/clear.png";
 import haze from "../images/haze.png";
 
-
 export default function SetSevenDayData() {
-
   const dispatch = useDispatch();
 
   const [colour, setColour] = useState("white");
@@ -32,42 +30,55 @@ export default function SetSevenDayData() {
     let pressure = allSeven[index].pressure;
     let humidity = allSeven[index].humidity;
     console.log("index", index);
-    dispatch(setOnclick({
-      "rise":rise, "set":set, "pressure":pressure, 
-      "humidity":humidity, "currentDayTemp":currentDayTemp,
-      "weather":weather, clicked: true
-    }));
+    dispatch(
+      setOnclick({
+        rise: rise,
+        set: set,
+        pressure: pressure,
+        humidity: humidity,
+        currentDayTemp: currentDayTemp,
+        weather: weather,
+        clicked: true,
+      })
+    );
     setState(!state);
     // state == true ? setColour("gray") : setColour("white");
-  }
+  };
 
-  
-        
-  
-    return (
-        <>
- 
-{ sevenData.map((day,i) => {
+  return (
+    <>
+      {sevenData.map((day, i) => {
+        const { name, minTemp, maxTemp, weather, currentDayTemp } = day;
 
-const { name, minTemp, maxTemp, weather, currentDayTemp } = day;
+        // (clicked && clicked == true) ? {backgroundColor:"blue"} :
+        // style={{backgroundColor: "gray"}}
 
-// (clicked && clicked == true) ? {backgroundColor:"blue"} : 
-// style={{backgroundColor: "gray"}}
-
-return (
-<div className={`${state}${i}`} key={i} onClick={() => setData(i, currentDayTemp, weather)} >
-  <p>{name}</p>
-  <span>{minTemp}</span>
-  <span>{maxTemp}</span>
-  <img src={weather == "Clouds"? cloud : weather == "Rain"? rain : weather == "Clear"? clear : weather == "Haze"? haze : mist}/>
-  <p>{weather}</p>
-</div>
-)
-
-})
-}
-        
-
-        </>
-    )
+        return (
+          <div
+            className={`${state}${i}`}
+            key={i}
+            onClick={() => setData(i, currentDayTemp, weather)}
+          >
+            <p>{name}</p>
+            <span>{minTemp}</span>
+            <span>{maxTemp}</span>
+            <img
+              src={
+                weather == "Clouds"
+                  ? cloud
+                  : weather == "Rain"
+                  ? rain
+                  : weather == "Clear"
+                  ? clear
+                  : weather == "Haze"
+                  ? haze
+                  : mist
+              }
+            />
+            <p>{weather}</p>
+          </div>
+        );
+      })}
+    </>
+  );
 }

@@ -9,16 +9,15 @@ const ApexChartTemp = () => {
 
   const temp12Hour = useSelector((state) => state.Temp12Hour.TwelveHour);
   const changeTemp = useSelector((state) => state.changableTemp.changableTemp);
- 
+
   useEffect(() => {
     if (temp12Hour) {
       setLoading(false);
     }
 
-    if(changeTemp) {
+    if (changeTemp) {
       setTempChanges(true);
     }
-
   }, [temp12Hour, changeTemp]);
 
   if (loading) {
@@ -29,7 +28,7 @@ const ApexChartTemp = () => {
   //  const [temperature, setTemperature] = useState([]);
 
   //  setTemperature(temp12Hour);
-  
+
   let state = {
     options: {
       chart: {
@@ -54,7 +53,6 @@ const ApexChartTemp = () => {
         text: "Hourly Temperature Movements",
         align: "left",
       },
-     
     },
     // series: [
     //   {
@@ -77,11 +75,9 @@ const ApexChartTemp = () => {
     // ],
   };
 
- 
- const tempData = () => {
-  if(changeTemp?.length > 0 && tempChanges) {
-    return (
-      [
+  const tempData = () => {
+    if (changeTemp?.length > 0 && tempChanges) {
+      return [
         {
           name: "Temperature",
           data: [
@@ -99,11 +95,9 @@ const ApexChartTemp = () => {
             changeTemp[11],
           ],
         },
-      ]
-    )
-  } else {
-    return (
-      [
+      ];
+    } else {
+      return [
         {
           name: "Temperature",
           data: [
@@ -121,11 +115,9 @@ const ApexChartTemp = () => {
             temp12Hour[11],
           ],
         },
-      ]
-    )
-  }
- }
-       
+      ];
+    }
+  };
 
   //  const tempData = () =>  {
   //   if(temp12Hour === undefined) {

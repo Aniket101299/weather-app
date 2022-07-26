@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { setSevenDay, setOnclick, set12Hour, setChangableTemp } from "../redux/actions/actions";
+import {
+  setSevenDay,
+  setOnclick,
+  set12Hour,
+  setChangableTemp,
+} from "../redux/actions/actions";
 // import SetSevenDayData from "./SetSevenDayData";
 
 import "./SevenDay.css";
@@ -59,8 +64,6 @@ export default function SevenDay({ data }) {
     fetchCityLatLon();
     // console.log("hi inside useEffect");
   }, [city]);
-
- 
 
   const fetchCityLatLon = async () => {
     try {
@@ -147,12 +150,10 @@ export default function SevenDay({ data }) {
   if (loading) {
     return <p>..Loading</p>;
   }
- 
 
   let start;
 
   const setData = (index, currentDayTemp, weather) => {
-
     let rise = clickRise[index];
     let set = clickSet[index];
     let pressure = allSeven[index].pressure;
@@ -213,8 +214,6 @@ export default function SevenDay({ data }) {
         clicked: true,
       })
     );
-
-    
 
     let colours = [];
     let borders = [];
@@ -281,8 +280,8 @@ export default function SevenDay({ data }) {
               onClick={() => setData(i, item.currentDayTemp, item.weather)}
               style={{
                 backgroundColor: colour[i],
-                border:`3px solid ${border[i]}`,
-                borderRadius:"7px",
+                border: `3px solid ${border[i]}`,
+                borderRadius: "7px",
               }}
             >
               <p>{item.name}</p>
