@@ -302,7 +302,8 @@ const plainClick5 = () => {
             <div className="searchResultBox" style={{display: dp}}>
               {search?.map((item,i) => 
                 <div key={i} onClick={getCity} className="searchResultItem">
-                  <span>{item.name}<FontAwesomeIcon className='locationInSearchResult' icon={faLocationDot} /> </span>
+                  <div>{item.name}</div>
+                  <div> <FontAwesomeIcon className='locationInSearchResult' icon={faLocationDot} /> </div>
                 </div>
               )}
             </div>
@@ -355,10 +356,10 @@ const plainClick5 = () => {
       <p className="txt">Change Background</p>
       <p className="dynamic">Dynamic backgrounds</p>
       <div className="coloursDiv">
-            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1500/?beauty,nature,water")} className="color clr1"></span>
-            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x900/?ice,nature,water")} className="color clr2"></span>
+            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1500/?sunrise,nature,water")} className="color clr1"></span>
+            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x900/?sunset,ice,nature,water")} className="color clr2"></span>
             <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1300/?rock,mountains,beach,desert,weather")} className="color clr3"></span>
-            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1400/?himalaya,forest,waterfall,clouds")} className="color clr4"></span>
+            <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1400/?himalaya,nature,forest,waterfall,clouds")} className="color clr4"></span>
             <span onClick={() => setChangeBackground("https://source.unsplash.com/800x1200/?sea,nature,water,trees")} className="color clr5"></span>
       </div>
       <p className="plain">Plain backgrounds</p>
