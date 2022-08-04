@@ -42,6 +42,11 @@ const ApexChartTemp = () => {
       },
       yaxis: {
         show: false,
+        labels: {
+          formatter: function (value) {
+            return value + "°C";
+          }
+        }
       },
       stroke: {
         curve: "smooth",

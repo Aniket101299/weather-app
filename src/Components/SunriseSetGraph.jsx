@@ -318,9 +318,34 @@ const SunriseSetGraph = () => {
           rotateAlways: true,
         },
       },
-      yaxis: {
-        show: false,
-      },
+      // yaxis: {
+      //   show: false,
+      //   labels: {
+      //     formatter: function (value) {
+      //         return value + "am";
+      //     }
+      // }
+      // },
+      yaxis: [
+        {
+          show: false,
+          seriesName: "Sunrise",
+          labels: {
+            formatter: function (value) {
+                      return value + " am";
+            },
+          }
+        },
+        {
+          show: false,
+          seriesName: "Sunset",
+          labels: {
+            formatter:  function (value) {
+              return value + " pm";
+           },
+          }
+        }
+      ],
       stroke: {
         curve: "smooth",
       },
